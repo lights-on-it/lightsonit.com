@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Lights On IT LLC — IT &amp; custom software, Grand Rapids, MI</title>
+<meta name="description" content="Lights On IT LLC is a small IT and custom-software practice in Grand Rapids, Michigan. Practical technology guidance and custom tools for business owners, by referral." />
+
+<!-- Open Graph: helps the business look complete to reviewers and link previews -->
+<meta property="og:title" content="Lights On IT LLC" />
+<meta property="og:description" content="Practical IT help and custom software for owners who'd rather run their business than wrestle their tech." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://lightsonit.com" />
+
+<!-- Glowing-filament favicon, inline so the site stays a single file -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230E1116'/%3E%3Ccircle cx='16' cy='16' r='9' fill='none' stroke='%23FFB05C' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='3.2' fill='%23FFD9A0'/%3E%3C/svg%3E" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+<style>
+  :root {
+    --ink:        #0E1116;
+    --ink-soft:   #151A22;
+    --line:       #232B36;
+    --filament:   #FFB05C;
+    --glow:       #FFD9A0;
+    --text:       #E9ECF1;
+    --muted:      #9AA3B0;
+    --maxw:       1080px;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--ink);
+    color: var(--text);
+    font-family: "IBM Plex Sans", system-ui, sans-serif;
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  a { color: inherit; }
+
+  .wrap {
+    width: 100%;
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  .eyebrow {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12.5px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* ---------- top bar ---------- */
+  .topbar {
+    position: relative;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 26px;
+  }
+  .mark {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    font-size: 17px;
+    text-decoration: none;
+  }
+  .bulb {
+    width: 13px; height: 13px;
+    border-radius: 50%;
+    background: var(--filament);
+    box-shadow: 0 0 0 3px rgba(255,176,92,0.18), 0 0 16px 2px rgba(255,176,92,0.65);
+  }
+  .status {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12.5px;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+  }
+  .status .dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--filament);
+    box-shadow: 0 0 10px 1px rgba(255,176,92,0.8);
+    animation: pulse 2.6s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50%      { opacity: 0.45; transform: scale(0.82); }
+  }
+
+  /* ---------- hero ---------- */
+  .hero {
+    position: relative;
+    min-height: 86vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 60px 0 80px;
+  }
+  /* the warm light that "comes on" */
+  .lightsource {
+    position: absolute;
+    top: 38%; left: 50%;
+    width: 1100px; height: 1100px;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle,
+      rgba(255,176,92,0.22) 0%,
+      rgba(255,176,92,0.10) 26%,
+      rgba(255,176,92,0.0) 60%);
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0;
+    animation: warmup 1.6s ease-out 0.15s forwards;
+  }
+  @keyframes warmup {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  .hero .inner { position: relative; z-index: 2; max-width: 760px; }
+
+  .hero .eyebrow { margin-bottom: 26px; }
+
+  h1 {
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: 600;
+    font-size: clamp(48px, 9vw, 92px);
+    line-height: 0.98;
+    letter-spacing: -0.03em;
+    margin: 0 0 26px;
+  }
+  h1 .on {
+    color: var(--filament);
+    text-shadow: 0 0 28px rgba(255,176,92,0.55), 0 0 60px rgba(255,176,92,0.28);
+    animation: flicker 1.6s ease-out 0.15s both;
+  }
+  @keyframes flicker {
+    0%   { opacity: 0.25; }
+    18%  { opacity: 0.9; }
+    24%  { opacity: 0.4; }
+    40%  { opacity: 1; }
+    100% { opacity: 1; }
+  }
+
+  .lede {
+    font-size: clamp(18px, 2.3vw, 22px);
+    color: var(--text);
+    max-width: 580px;
+    margin: 0 0 16px;
+  }
+  .sub {
+    color: var(--muted);
+    max-width: 540px;
+    margin: 0 0 38px;
+    font-size: 16px;
+  }
+
+  .cta-row { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+  .btn {
+    display: inline-block;
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    text-decoration: none;
+    padding: 14px 26px;
+    border-radius: 10px;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+  }
+  .btn-primary {
+    background: var(--filament);
+    color: #1A1206;
+    box-shadow: 0 0 0 1px rgba(255,176,92,0.4), 0 8px 30px -8px rgba(255,176,92,0.5);
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 0 1px rgba(255,176,92,0.6), 0 12px 38px -8px rgba(255,176,92,0.65); }
+  .btn-ghost {
+    color: var(--text);
+    border: 1px solid var(--line);
+    padding: 14px 22px;
+  }
+  .btn-ghost:hover { border-color: var(--filament); color: var(--filament); }
+
+  /* ---------- generic section ---------- */
+  .section { position: relative; z-index: 2; padding: 86px 0; border-top: 1px solid var(--line); }
+  .section h2 {
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: 600;
+    font-size: clamp(26px, 4vw, 34px);
+    letter-spacing: -0.02em;
+    margin: 14px 0 0;
+    max-width: 620px;
+    line-height: 1.15;
+  }
+
+  /* services */
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+    margin-top: 44px;
+  }
+  .card {
+    background: var(--ink-soft);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 28px 26px 30px;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+  }
+  .card:hover { border-color: rgba(255,176,92,0.45); transform: translateY(-3px); }
+  .card .num {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12px;
+    color: var(--filament);
+    letter-spacing: 0.08em;
+  }
+  .card h3 {
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    margin: 18px 0 10px;
+  }
+  .card p { margin: 0; color: var(--muted); font-size: 15.5px; line-height: 1.6; }
+
+  /* approach */
+  .approach p {
+    font-size: clamp(19px, 2.6vw, 24px);
+    line-height: 1.5;
+    max-width: 720px;
+    margin: 30px 0 0;
+    color: var(--text);
+  }
+  .approach .quiet { color: var(--muted); }
+
+  /* contact */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 40px;
+    margin-top: 40px;
+    align-items: start;
+  }
+  .detail { margin-bottom: 22px; }
+  .detail .label {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .detail .value { font-size: 17px; }
+  .detail a.value { color: var(--filament); text-decoration: none; }
+  .detail a.value:hover { text-decoration: underline; }
+
+  .contact-card {
+    background: var(--ink-soft);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 34px 32px;
+  }
+  .contact-card h3 {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 21px;
+    margin: 0 0 8px;
+  }
+  .contact-card p { color: var(--muted); margin: 0 0 24px; font-size: 15.5px; }
+
+  /* footer */
+  footer {
+    border-top: 1px solid var(--line);
+    padding: 38px 0 56px;
+    color: var(--muted);
+    font-size: 14px;
+  }
+  .foot-row { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 14px; align-items: center; }
+  .foot-row .foot-mark { font-family: "Space Grotesk", sans-serif; font-weight: 600; color: var(--text); }
+
+  /* focus visibility */
+  a:focus-visible, .btn:focus-visible {
+    outline: 2px solid var(--filament);
+    outline-offset: 3px;
+    border-radius: 8px;
+  }
+
+  /* ---------- responsive ---------- */
+  @media (max-width: 820px) {
+    .cards { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 560px) {
+    .status .txt { display: none; }
+    .section { padding: 64px 0; }
+    .hero { min-height: 80vh; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .lightsource { animation: none; opacity: 1; }
+    h1 .on { animation: none; }
+    .status .dot { animation: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="topbar">
+    <a class="mark" href="#top"><span class="bulb"></span> Lights On IT</a>
+    <div class="status"><span class="dot"></span><span class="txt">Taking new clients</span></div>
+  </header>
+</div>
+
+<main id="top">
+  <section class="hero">
+    <div class="lightsource"></div>
+    <div class="wrap">
+      <div class="inner">
+        <p class="eyebrow">IT &amp; custom software · Grand Rapids, MI</p>
+        <h1>Lights<br>On <span class="on">IT</span></h1>
+        <p class="lede">Practical IT help and custom software for owners who would rather run their business than wrestle their technology.</p>
+        <p class="sub">A small, hands-on practice. You work directly with the person doing the work, and most clients arrive by referral.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="#contact">Get in touch</a>
+          <a class="btn btn-ghost" href="mailto:hello@lightsonit.com">Email us</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="contact">
+    <div class="wrap">
+      <p class="eyebrow">Contact</p>
+      <h2>Tell us what you are trying to get done.</h2>
+      <div class="contact-grid">
+        <div>
+          <div class="detail">
+            <div class="label">Business</div>
+            <div class="value">Lights On IT LLC</div>
+          </div>
+          <div class="detail">
+            <div class="label">Location</div>
+            <div class="value">Walker / Grand Rapids, Michigan</div>
+          </div>
+          <div class="detail">
+            <div class="label">Email</div>
+            <a class="value" href="mailto:hello@lightsonit.com">hello@lightsonit.com</a>
+          </div>
+          <div class="detail">
+            <div class="label">Web</div>
+            <a class="value" href="https://lightsonit.com">lightsonit.com</a>
+          </div>
+        </div>
+        <div class="contact-card">
+          <h3>By referral, and open to a conversation.</h3>
+          <p>Most work comes through people we have already helped. If you were sent here, or you just found us, send a note about what you are dealing with and we will take it from there.</p>
+          <a class="btn btn-primary" href="mailto:hello@lightsonit.com">Email Lights On IT</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot-row">
+    <span><span class="foot-mark">Lights On IT LLC</span> · Michigan</span>
+    <span>&copy; <span id="yr"></span> Lights On IT LLC. All rights reserved.</span>
+  </div>
+</footer>
+
+<script>
+  document.getElementById("yr").textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
