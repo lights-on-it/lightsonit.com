@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gregg Owen | Rock Star. Prosecutor. True Crime Storyteller.</title>
+<link rel="icon" type="image/png" href="https://www.greggowen26th.com/wp-content/uploads/2026/06/division-logo.png">
+<link rel="apple-touch-icon" href="https://www.greggowen26th.com/wp-content/uploads/2026/06/division-logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;500;600;700&family=Lora:ital,wght@0,500;1,500;1,600&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0b0b0c;
+    --panel:#141416;
+    --panel-2:#1b1b1e;
+    --red:#b0282b;
+    --red-bright:#d8413f;
+    --bone:#e8e3d7;
+    --grey:#9a968d;
+    --line:#2a2a2d;
+    --display:'Oswald',Impact,sans-serif;
+    --serif:'Lora',Georgia,serif;
+    --mono:'Courier Prime',ui-monospace,monospace;
+    --body:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--ink);color:var(--bone);font-family:var(--body);
+    line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+
+  /* ---------- utility ---------- */
+  .wrap{max-width:1200px;margin:0 auto;padding:0 28px}
+  .eyebrow{
+    font-family:var(--mono);font-size:.72rem;letter-spacing:.32em;text-transform:uppercase;
+    color:var(--red-bright);display:inline-flex;align-items:center;gap:.7em;margin-bottom:1.1rem;
+  }
+  .eyebrow::before{content:none}
+  .display{font-family:var(--display);font-weight:700;text-transform:uppercase;line-height:.95;letter-spacing:.01em}
+  .ph{ /* honest image placeholder */
+    position:relative;background:
+      repeating-linear-gradient(135deg,#161618 0 14px,#191919 14px 28px);
+    border:1px dashed #34343a;border-radius:3px;display:flex;align-items:center;justify-content:center;
+    color:#54545a;font-family:var(--mono);font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;text-align:center;
+    min-height:160px;
+  }
+  .ph span{padding:0 10px}
+
+  .btn{
+    font-family:var(--display);font-weight:600;text-transform:uppercase;letter-spacing:.12em;
+    font-size:.86rem;padding:.95em 1.6em;display:inline-flex;align-items:center;gap:.6em;
+    border:1px solid transparent;cursor:pointer;transition:transform .15s ease,background .2s ease,color .2s ease,border-color .2s ease;
+  }
+  .btn-red{background:var(--red);color:#fff}
+  .btn-red:hover{background:var(--red-bright);transform:translateY(-2px)}
+  .btn-ghost{background:transparent;color:var(--bone);border-color:#3a3a40}
+  .btn-ghost:hover{border-color:var(--bone);transform:translateY(-2px)}
+  .btn-bone{background:var(--bone);color:#111}
+  .btn-bone:hover{background:#fff;transform:translateY(-2px)}
+
+  /* ---------- nav ---------- */
+  header.nav{
+    position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(8,8,9,.86);
+    backdrop-filter:blur(10px);border-bottom:1px solid var(--line);
+  }
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:66px}
+  .brand{font-family:var(--display);font-weight:700;font-size:1.45rem;letter-spacing:.06em;text-transform:uppercase}
+  .brand b{color:var(--red-bright);font-weight:700}
+  .nav-links{display:flex;align-items:center;gap:1.7rem}
+  .nav-links a{
+    font-family:var(--display);font-weight:500;text-transform:uppercase;letter-spacing:.13em;font-size:.82rem;
+    color:var(--grey);position:relative;padding:4px 0;transition:color .18s ease;cursor:pointer;
+  }
+  .nav-links a:hover{color:var(--bone)}
+  .nav-links a.active{color:var(--bone)}
+  .nav-links a.active::after{content:"";position:absolute;left:0;right:0;bottom:-3px;height:2px;background:var(--red)}
+  .nav-cta{margin-left:.6rem}
+  .nav-links a.nav-cta{color:#fff;padding:.72em 1.5em;font-size:.82rem}
+  .nav-links a.nav-cta:hover{color:#fff}
+  .nav-links a.nav-cta.btn-bone,.nav-links a.nav-cta.btn-bone:hover{color:#111}
+  .nav-links a.nav-cta.active::after{display:none}
+  .burger{display:none;background:none;border:0;color:var(--bone);font-size:1.5rem;cursor:pointer}
+
+  /* ---------- page sections ---------- */
+  .page{display:none;animation:fade .5s ease both}
+  .page.active{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  section{padding:96px 0}
+  .lead-pad{padding-top:120px}
+
+  /* ---------- hero ---------- */
+  .hero{position:relative;min-height:92vh;display:flex;align-items:center;padding-top:66px;overflow:hidden;background:var(--ink)}
+  .hero-bg{position:absolute;top:66px;left:0;right:0;bottom:0;z-index:0;
+    background-image:
+      linear-gradient(90deg,var(--ink) 0%,rgba(11,11,12,.74) 24%,rgba(11,11,12,.34) 50%,transparent 68%),
+      linear-gradient(0deg,rgba(11,11,12,.88) 0%,rgba(11,11,12,.32) 26%,transparent 52%),
+      radial-gradient(120% 100% at 74% 28%,rgba(176,40,43,.10),transparent 60%),
+      url('banner-image-1024x480.png');
+    background-size:cover,cover,cover,cover;
+    background-position:center,center,center,74% 12%;
+    background-repeat:no-repeat}
+  .hero-inner{position:relative;z-index:2;width:100%}
+  .hero h1{font-size:clamp(2.6rem,6.4vw,5.4rem)}
+  .hero h1 .r{color:var(--red-bright)}
+  .hero p.sub{max-width:30ch;color:#d6d2c8;font-size:1.05rem;margin:1.8rem 0 2.2rem;text-shadow:0 1px 14px rgba(0,0,0,.7)}
+  .hero-cta{display:flex;flex-wrap:wrap;gap:.9rem}
+  /* instagram follower badge (hero) */
+  .ig-stat{display:inline-flex;align-items:center;gap:.7em;margin-top:1.8rem;
+    background:rgba(17,17,19,.55);border:1px solid var(--line);border-radius:999px;
+    padding:.55em 1.1em .55em .8em;transition:border-color .2s ease,transform .15s ease}
+  .ig-stat:hover{border-color:var(--red);transform:translateY(-2px)}
+  .ig-stat svg{width:22px;height:22px;flex:0 0 auto;color:var(--red-bright)}
+  .ig-stat .ig-count{font-family:var(--display);font-weight:700;font-size:1.15rem;letter-spacing:.02em;color:var(--bone)}
+  .ig-stat .ig-label{font-family:var(--mono);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--grey)}
+  /* pull-quote band below hero */
+  .quote-band{background:var(--ink);border-bottom:1px solid var(--line);padding:40px 0 64px}
+  .quote-card{max-width:840px;background:rgba(17,17,19,.6);border:1px solid var(--line);border-left:3px solid var(--red);padding:40px 46px 34px}
+  .quote-card .mark{font-family:var(--serif);color:var(--red);font-size:2.8rem;line-height:0;display:block;height:20px}
+  .quote-card p{font-family:var(--serif);font-style:italic;font-size:clamp(1.6rem,3.4vw,2.3rem);line-height:1.55;color:var(--bone)}
+  .quote-card .attr{font-family:var(--mono);font-size:.72rem;letter-spacing:.22em;color:var(--red-bright);margin-top:1.2rem;text-transform:uppercase}
+
+
+  /* ---------- featured book ---------- */
+  .book{background:var(--panel);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .book-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:56px;align-items:center}
+  .cover{aspect-ratio:2/3;max-width:320px;margin:0 auto;box-shadow:0 30px 60px rgba(0,0,0,.6)}
+  .book h2{font-size:clamp(2.4rem,5vw,3.6rem);margin:.2rem 0 1.4rem}
+  .hook{list-style:none;font-family:var(--serif);font-style:italic;font-size:1.4rem;line-height:1.9;color:var(--bone);margin-bottom:1.8rem}
+  .book .desc{color:var(--grey);max-width:52ch;margin-bottom:2rem}
+  .buy-row{display:flex;flex-wrap:wrap;gap:.8rem;align-items:center}
+  .buy-also{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;color:var(--grey);text-transform:uppercase;margin-top:1.3rem}
+  .buy-also a{color:var(--bone);border-bottom:1px solid var(--red);padding-bottom:1px}
+  .buy-also a:hover{color:var(--red-bright)}
+  /* full retailer listing (grouped by format) */
+  .formats{margin-top:1.8rem;border-top:1px solid var(--line)}
+  .fmt{display:grid;grid-template-columns:120px 1fr;gap:18px;padding:16px 0;border-bottom:1px solid var(--line);align-items:baseline}
+  .fmt-label{font-family:var(--mono);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--red-bright)}
+  .fmt-links{display:flex;flex-wrap:wrap;gap:.55rem 1rem}
+  .fmt-links a{font-family:var(--display);text-transform:uppercase;letter-spacing:.05em;font-size:.86rem;color:var(--bone);border-bottom:1px solid var(--red);padding-bottom:1px}
+  .fmt-links a:hover{color:var(--red-bright)}
+  @media(max-width:560px){.fmt{grid-template-columns:1fr;gap:7px}}
+  .coauthor{font-family:var(--mono);font-size:.78rem;letter-spacing:.1em;color:var(--grey);margin-bottom:1.6rem;text-transform:uppercase}
+
+  /* ---------- three-act arc ---------- */
+  .arc-head{text-align:center;margin-bottom:58px}
+  .arc-head h2{font-size:clamp(2rem,4.5vw,3rem)}
+  .acts{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+  .act{background:var(--panel);border:1px solid var(--line);padding:0 0 28px;transition:border-color .2s ease,transform .2s ease}
+  .act:hover{border-color:var(--red);transform:translateY(-4px)}
+  .act .ph{min-height:230px;border:0;border-bottom:1px solid var(--line)}
+  .act-body{padding:26px 26px 0}
+  .act .tag{font-family:var(--mono);font-size:.7rem;letter-spacing:.24em;color:var(--red-bright);text-transform:uppercase}
+  .act h3{font-family:var(--display);font-weight:700;text-transform:uppercase;font-size:1.7rem;margin:.5rem 0 .9rem;line-height:1.05}
+  .act p{color:var(--grey);font-size:.96rem}
+
+  /* ---------- reels ---------- */
+  .reels{background:var(--panel)}
+  .reel-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+  .reel{display:block;background:var(--panel-2);border:1px solid var(--line);transition:transform .2s ease,border-color .2s ease;position:relative}
+  .reel:hover{transform:translateY(-4px);border-color:var(--red)}
+  .reel-thumb{position:relative;aspect-ratio:16/9;overflow:hidden;background:#000}
+  .reel-thumb img{width:100%;height:100%;object-fit:cover;opacity:.9}
+  .reel-thumb::after{content:"\25B6";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+    color:#fff;font-size:1.1rem;background:rgba(176,40,43,.82);width:46px;height:46px;border-radius:50%;margin:auto;}
+  .reel .cap{padding:14px 16px 18px;font-family:var(--display);font-weight:500;text-transform:uppercase;letter-spacing:.04em;font-size:.92rem;line-height:1.25}
+
+  /* ---------- instagram reels (official embeds) ---------- */
+  .ig-reel-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:22px;justify-items:center}
+  .ig-reel-grid .instagram-media{margin:0!important;min-width:0!important;width:100%!important;max-width:340px!important}
+  .ig-empty{color:var(--grey);font-family:var(--mono);font-size:.8rem;letter-spacing:.08em}
+
+  /* ---------- press / media strip ---------- */
+  .press{text-align:center;background:var(--ink)}
+  .press .quote{font-family:var(--serif);font-style:italic;font-size:clamp(1.5rem,3.5vw,2.3rem);max-width:24ch;margin:1.4rem auto 1.1rem;line-height:1.4}
+  .press .src{font-family:var(--mono);font-size:.74rem;letter-spacing:.24em;color:var(--red-bright);text-transform:uppercase}
+  .logos{display:flex;gap:40px;justify-content:center;flex-wrap:wrap;margin-top:42px;opacity:.6}
+  .logos .ph{min-height:46px;width:150px}
+
+  /* ---------- mailing ---------- */
+  .signup{background:linear-gradient(180deg,var(--panel),var(--ink));border-top:1px solid var(--line);text-align:center}
+  .signup h2{font-size:clamp(1.8rem,4vw,2.6rem);margin-bottom:.8rem}
+  .signup p{color:var(--grey);max-width:46ch;margin:0 auto 2rem}
+  .form-row{display:flex;gap:.6rem;max-width:480px;margin:0 auto;flex-wrap:wrap;justify-content:center}
+  .form-row input{flex:1;min-width:220px;background:var(--panel-2);border:1px solid var(--line);color:var(--bone);
+    padding:.95em 1.1em;font-family:var(--body);font-size:.95rem}
+  .form-row input:focus{outline:2px solid var(--red);outline-offset:1px;border-color:var(--red)}
+
+  /* ---------- about ---------- */
+  .about-grid{display:grid;grid-template-columns:.7fr 1.3fr;gap:52px;align-items:start}
+  .about-portrait{position:sticky;top:96px}
+  .about-portrait .ph{min-height:440px}
+  .about h1{font-size:clamp(2.4rem,6vw,4rem);margin-bottom:1.6rem}
+  .about .body p{margin-bottom:1.3rem;color:#cfcabd;font-size:1.07rem}
+  .about .body p:first-child{font-size:1.22rem;color:var(--bone)}
+  .timeline{margin-top:2.4rem;border-top:1px solid var(--line)}
+  .tl{display:grid;grid-template-columns:120px 1fr;gap:20px;padding:18px 0;border-bottom:1px solid var(--line)}
+  .tl .yr{font-family:var(--mono);color:var(--red-bright);font-size:.9rem;letter-spacing:.06em}
+  .tl .ev{color:var(--grey)}
+  .tl .ev b{color:var(--bone);font-weight:600}
+
+  /* ---------- generic page header ---------- */
+  .ph-head{border-bottom:1px solid var(--line);padding-top:120px}
+  .ph-head h1{font-size:clamp(2.4rem,6vw,4.2rem)}
+  .ph-head p{color:var(--grey);max-width:54ch;margin-top:1.2rem}
+
+  /* ---------- contact ---------- */
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:52px}
+  .field{margin-bottom:18px}
+  .field label{display:block;font-family:var(--mono);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--grey);margin-bottom:.5rem}
+  .field input,.field textarea,.field select{
+    width:100%;background:var(--panel-2);border:1px solid var(--line);color:var(--bone);
+    padding:.85em 1em;font-family:var(--body);font-size:.97rem;
+  }
+  .field input:focus,.field textarea:focus,.field select:focus{outline:2px solid var(--red);outline-offset:1px;border-color:var(--red)}
+  .field textarea{min-height:130px;resize:vertical}
+  .contact-aside .ci{margin-bottom:26px}
+  .contact-aside .ci .k{font-family:var(--mono);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--red-bright);margin-bottom:.4rem}
+  .contact-aside .ci .v{font-size:1.05rem}
+  .form-note{font-family:var(--mono);font-size:.74rem;color:var(--grey);margin-top:14px}
+  #contact-msg{display:none;margin-top:16px;padding:14px 16px;border:1px solid var(--red);background:rgba(176,40,43,.12);font-size:.92rem}
+
+  /* ---------- footer ---------- */
+  footer{background:#08080a;border-top:1px solid var(--line);padding:54px 0 40px}
+  .foot-grid{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:24px}
+  .foot-links{display:flex;gap:22px;flex-wrap:wrap}
+  .foot-links a{font-family:var(--display);text-transform:uppercase;letter-spacing:.12em;font-size:.78rem;color:var(--grey);cursor:pointer}
+  .foot-links a:hover{color:var(--bone)}
+  .foot-note{color:#55555c;font-size:.78rem;font-family:var(--mono);margin-top:26px;letter-spacing:.04em}
+
+  /* ---------- mockup banner ---------- */
+  .mock-flag{position:fixed;bottom:0;left:0;right:0;z-index:80;background:var(--red);color:#fff;
+    font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-align:center;padding:7px 14px;text-transform:uppercase}
+  .mock-flag button{background:none;border:1px solid rgba(255,255,255,.5);color:#fff;font-family:var(--mono);font-size:.66rem;
+    padding:2px 8px;margin-left:12px;cursor:pointer;letter-spacing:.1em}
+
+  /* ---------- wired client images ---------- */
+  img.cover{object-fit:cover;background:#000}
+  .act-img{width:100%;height:230px;object-fit:cover;object-position:center top;border-bottom:1px solid var(--line);display:block}
+  .about-img{width:100%;height:480px;object-fit:cover;object-position:72% 22%;display:block;border:1px solid var(--line)}
+
+  /* ---------- responsive ---------- */
+  @media(max-width:900px){
+    .nav-links{display:none}
+    .burger{display:block}
+    .nav-links.open{display:flex;position:absolute;top:66px;left:0;right:0;flex-direction:column;
+      background:#0c0c0e;border-bottom:1px solid var(--line);padding:18px 28px;gap:1.1rem}
+    .book-grid,.about-grid,.contact-grid{grid-template-columns:1fr}
+    .acts{grid-template-columns:1fr}
+    .reel-grid{grid-template-columns:1fr 1fr}
+    .about-portrait{position:static}
+  }
+  @media(max-width:768px){
+    .hero{min-height:86vh}
+    .hero-bg{background-image:
+      linear-gradient(90deg,var(--ink) 0%,rgba(11,11,12,.72) 30%,rgba(11,11,12,.42) 58%,transparent 82%),
+      linear-gradient(0deg,rgba(11,11,12,.92) 0%,rgba(11,11,12,.46) 32%,transparent 60%),
+      url('banner-image-1024x480.png');
+      background-size:cover,cover,cover;background-position:center,center,74% 12%}
+    .hero p.sub{max-width:26ch}
+    .quote-band{padding:46px 0}
+    .quote-card{padding:24px 24px 20px}
+    .quote-card p{font-size:1.4rem}
+  }
+  @media(max-width:520px){
+    .reel-grid{grid-template-columns:1fr}
+    .tl{grid-template-columns:84px 1fr;gap:12px}
+  }
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" data-target="home">GREGG <b>OWEN</b></a>
+    <nav class="nav-links" id="navlinks">
+      <a data-target="home" class="active">Home</a>
+      <a data-target="about">About Gregg</a>
+      <a data-target="books">Books</a>
+      <a data-target="videos">Videos</a>
+      <a data-target="media">Media</a>
+      <a data-target="contact">Contact</a>
+      <a class="btn btn-red nav-cta" href="https://www.amazon.com/dp/B0FLVRM325" target="_blank" rel="noopener">Buy Convergence</a>
+      <a class="btn btn-bone nav-cta" href="https://book.greggowen26th.com" target="_blank" rel="noopener">3 Free Chapters</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Menu">&#9776;</button>
+  </div>
+</header>
+
+<main>
+
+<!-- ============ HOME ============ -->
+<div class="page active" id="home">
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="wrap hero-inner">
+      <h1 class="display">Rock Star.<br>Prosecutor.<br><span class="r">True Crime<br>Storyteller.</span></h1>
+      <p class="sub">From touring with some of the biggest bands of the 1960s and ’70s to prosecuting murder cases in Chicago’s most corrupt era, Gregg Owen tells true crime from the inside.</p>
+      <div class="hero-cta">
+        <a class="btn btn-red" href="https://www.amazon.com/dp/B0FLVRM325" target="_blank" rel="noopener">Buy Convergence</a>
+        <a class="btn btn-ghost" data-target="videos">Watch the Reels</a>
+        <a class="btn btn-ghost" data-target="contact">Book Gregg for Media</a>
+      </div>
+      <a class="ig-stat" href="https://www.instagram.com/greggowen26th/" target="_blank" rel="noopener" aria-label="Follow Gregg Owen on Instagram">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+          <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+        </svg>
+        <span class="ig-count" id="ig-count">132K</span>
+        <span class="ig-label">followers on Instagram</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- pull quote -->
+  <section class="quote-band">
+    <div class="wrap">
+      <div class="quote-card">
+        <span class="mark">&ldquo;</span>
+        <p>I lived it.<br>I tried the cases.<br>I know where the bodies are buried.</p>
+        <div class="attr">Gregg Owen</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- featured book -->
+  <section class="book">
+    <div class="wrap book-grid">
+      <img class="cover" src="Convergence_Cover.jpg" alt="Convergence book cover">
+      <div>
+        <span class="eyebrow">Featured Book</span>
+        <h2 class="display">Convergence</h2>
+        <div class="coauthor">A true-crime narrative by Gregg Owen &amp; Jonathan Dixon</div>
+        <ul class="hook">
+          <li>A wealthy killer.</li>
+          <li>A double murder.</li>
+          <li>A young prosecutor.</li>
+          <li>A corrupt Chicago courthouse.</li>
+        </ul>
+        <p class="desc">Late-1970s Chicago. Two young people are stabbed to death, there is a single terrified eyewitness, and the defendant has money, power, connections, and the best defense team the prosecution had ever faced. A case that nearly slipped away, told by the prosecutor who lived it.</p>
+        <div class="buy-row">
+          <a class="btn btn-red" href="https://www.amazon.com/Convergence-Jonathan-Dixon/dp/B0FLVRM325/" target="_blank" rel="noopener">Buy on Amazon</a>
+          <a class="btn btn-bone" href="https://bookshop.org/p/books/convergence-gregg-owen/e0061ba9d39b2f9e" target="_blank" rel="noopener">Buy on Bookshop</a>
+        </div>
+        <div class="buy-also">Also in Kindle, audiobook &amp; more &mdash; <a data-target="books" style="cursor:pointer">see all formats &amp; retailers</a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- three-act arc -->
+  <section>
+    <div class="wrap">
+      <div class="arc-head">
+        <h2 class="display">The Story Behind Gregg Owen</h2>
+      </div>
+      <div class="acts">
+        <article class="act">
+          <img class="act-img" src="https://www.greggowen26th.com/wp-content/uploads/2026/06/gregg-owen-with-band-jerico-688x1024.jpeg" alt="Gregg Owen with his band" loading="lazy">
+          <div class="act-body">
+            <span class="tag">Act I: Rock Star</span>
+            <h3>Touring the world</h3>
+            <p>Self-taught on the keyboard, Gregg joined The American Breed in 1969 and spent two decades on stage, opening for legends and living the dream.</p>
+          </div>
+        </article>
+        <article class="act">
+          <img class="act-img" src="https://www.greggowen26th.com/wp-content/uploads/2026/06/gregg-owen-prosecutor-with-daley-e1780949558597-681x1024.jpeg" alt="Gregg Owen as prosecutor" loading="lazy">
+          <div class="act-body">
+            <span class="tag">Act II: Prosecutor</span>
+            <h3>Fighting killers</h3>
+            <p>He put himself through law school from the road, then led Cook County’s fight against street-gang violence: high-profile, and genuinely dangerous.</p>
+          </div>
+        </article>
+        <article class="act">
+          <div class="ph"><span>Author / present day<br>[ client photo ]</span></div>
+          <div class="act-body">
+            <span class="tag">Act III: Storyteller</span>
+            <h3>Telling the truth</h3>
+            <p>Now Gregg tells true crime from the inside, beginning with Convergence, the case that almost got away.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- reels -->
+  <section class="reels">
+    <div class="wrap">
+      <span class="eyebrow">Watch Gregg’s Reels / True Crime Commentary</span>
+      <div class="reel-grid" id="reel-grid-home"></div>
+    </div>
+  </section>
+
+  <!-- press -->
+  <section class="press">
+    <div class="wrap">
+      <span class="eyebrow" style="justify-content:center;display:flex">As Seen &amp; Heard On</span>
+      <p class="quote">“Gregg Owen brings a prosecutor’s eye and a storyteller’s voice.”</p>
+      <div class="src">Law &amp; Crime</div>
+      <div class="logos">
+        <div class="ph"><span>logo</span></div>
+        <div class="ph"><span>logo</span></div>
+        <div class="ph"><span>logo</span></div>
+        <div class="ph"><span>logo</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- signup -->
+  <section class="signup" id="signup">
+    <div class="wrap">
+      <h2 class="display">Sign Up for 3 Free Chapters of Convergence</h2>
+      <p>Drop your email on our secure download page and we’ll send the first three chapters of Convergence straight to your inbox — free.</p>
+      <div class="form-row" style="justify-content:center">
+        <a class="btn btn-red" href="https://book.greggowen26th.com" target="_blank" rel="noopener">Get 3 Free Chapters</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ============ ABOUT ============ -->
+<div class="page" id="about">
+  <section class="lead-pad">
+    <div class="wrap about-grid">
+      <div class="about-portrait">
+        <img class="about-img" src="banner-image-1024x480.png" alt="Gregg Owen">
+      </div>
+      <div class="about">
+        <h1 class="display">About Gregg Owen</h1>
+        <div class="body">
+          <p>Gregg Owen has lived several lives, and each one set up the next.</p>
+          <p>He taught himself to play keyboard and, in 1969, joined The American Breed, launching a music career that spanned two decades and put him on stages across the country. Wary of a cutthroat music business, he did something almost no touring musician would: he put himself through law school from the road, determined to protect his band on his own terms.</p>
+          <p>Then he traded the stage for the courtroom. Gregg joined the Cook County State’s Attorney’s Office, where he was appointed by Richard M. Daley, then State’s Attorney for Cook County, to lead the fight against the city’s street-gang violence as Chief of Gang Prosecutions. The work was high-profile and dangerous; its success brought threats against Gregg and his family. He worked alongside the U.S. Attorney’s Office and officials in Washington, prosecuting cases that defined one of Chicago’s most corrupt eras.</p>
+          <p>Today he tells those stories from the inside. His true-crime book <em>Convergence</em>, written with Jonathan Dixon, revives a brutal late-1970s Chicago double murder, a case Gregg helped try and one that came perilously close to being swept aside.</p>
+        </div>
+        <div class="timeline">
+          <div class="tl"><div class="yr">1969</div><div class="ev">Joins <b>The American Breed</b>; begins two decades as a touring keyboardist and songwriter.</div></div>
+          <div class="tl"><div class="yr">1970s</div><div class="ev">Puts himself through <b>law school</b> while on the road.</div></div>
+          <div class="tl"><div class="yr">1980s</div><div class="ev">Appointed by <b>Richard M. Daley</b> to lead Cook County <b>Gang Prosecutions</b>.</div></div>
+          <div class="tl"><div class="yr">Today</div><div class="ev">True-crime author and commentator; debut book <b>Convergence</b>.</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ============ BOOKS ============ -->
+<div class="page" id="books">
+  <section class="book lead-pad">
+    <div class="wrap book-grid">
+      <img class="cover" src="Convergence_Cover.jpg" alt="Convergence book cover">
+      <div>
+        <span class="eyebrow">The Book</span>
+        <h2 class="display">Convergence</h2>
+        <div class="coauthor">By Gregg Owen &amp; Jonathan Dixon &middot; True Crime</div>
+        <p class="desc">A fast-paced true story of a brutal double murder in late-1970s Chicago, a fairly clear-cut case that was almost closed. Two young people stabbed to death. One terrified eyewitness. A defendant with money, power, the right connections, and a formidable defense team. Told from inside the prosecution by Gregg Owen and rendered with the pace of a thriller by co-author Jonathan Dixon, it reads like fiction, except every word of it happened.</p>
+        <div class="buy-row">
+          <a class="btn btn-red" href="https://www.amazon.com/Convergence-Jonathan-Dixon/dp/B0FLVRM325/" target="_blank" rel="noopener">Buy on Amazon</a>
+          <a class="btn btn-bone" href="https://book.greggowen26th.com" target="_blank" rel="noopener">3 Free Chapters</a>
+        </div>
+        <div class="formats">
+          <div class="fmt">
+            <span class="fmt-label">Paperback</span>
+            <div class="fmt-links">
+              <a href="https://www.amazon.com/Convergence-Jonathan-Dixon/dp/B0FLVRM325/" target="_blank" rel="noopener">Amazon</a>
+              <a href="https://www.barnesandnoble.com/w/convergence-jonathan-dixon/1148021615" target="_blank" rel="noopener">Barnes &amp; Noble</a>
+              <a href="https://www.booksamillion.com/p/Convergence/Jonathan-Dixon/9798218644956" target="_blank" rel="noopener">Books-A-Million</a>
+              <a href="https://bookshop.org/p/books/convergence-gregg-owen/e0061ba9d39b2f9e" target="_blank" rel="noopener">Bookshop.org</a>
+            </div>
+          </div>
+          <div class="fmt">
+            <span class="fmt-label">eBook</span>
+            <div class="fmt-links">
+              <a href="https://www.amazon.com/Convergence-Jonathan-Dixon-ebook/dp/B0FNS454BL" target="_blank" rel="noopener">Kindle</a>
+            </div>
+          </div>
+          <div class="fmt">
+            <span class="fmt-label">Audiobook</span>
+            <div class="fmt-links">
+              <a href="https://www.barnesandnoble.com/w/convergence-gregg-owen/1148258050?ean=2940203353627" target="_blank" rel="noopener">Barnes &amp; Noble</a>
+              <a href="https://books.apple.com/us/audiobook/convergence/id1838728897" target="_blank" rel="noopener">Apple Books</a>
+              <a href="https://www.audible.com/pd/Convergence-Audiobook/B0FRN7P2S7" target="_blank" rel="noopener">Audible</a>
+              <a href="https://open.spotify.com/show/5iXfRAoQewOpQGIbv637lI?si=cb84fa16d0e94380" target="_blank" rel="noopener">Spotify</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ============ VIDEOS ============ -->
+<div class="page" id="videos">
+  <section class="lead-pad">
+    <div class="wrap">
+      <span class="eyebrow">Videos</span>
+      <h1 class="display" style="font-size:clamp(2.2rem,5vw,3.4rem);margin-bottom:.8rem">True crime commentary</h1>
+      <p style="color:var(--grey);max-width:52ch;margin-bottom:46px">Short-form reels and case breakdowns from a prosecutor who was in the room. Follow along on <a href="https://www.instagram.com/greggowen26th/" target="_blank" rel="noopener" style="color:var(--bone);border-bottom:1px solid var(--red)">Instagram</a>.</p>
+      <!-- Instagram first (Gregg’s largest audience) -->
+      <div style="margin-top:8px">
+        <span class="eyebrow">Instagram Reels</span>
+        <h2 class="display" style="font-size:clamp(1.8rem,4vw,2.6rem);margin:.2rem 0 .6rem">Straight from the feed</h2>
+        <p style="color:var(--grey);max-width:52ch;margin-bottom:34px">Gregg’s latest true-crime reels, pulled live from <a href="https://www.instagram.com/greggowen26th/" target="_blank" rel="noopener" style="color:var(--bone);border-bottom:1px solid var(--red)">@greggowen26th</a>.</p>
+        <div class="ig-reel-grid" id="ig-reel-grid"></div>
+      </div>
+
+      <!-- YouTube second -->
+      <div style="margin-top:64px">
+        <span class="eyebrow">YouTube</span>
+        <h2 class="display" style="font-size:clamp(1.8rem,4vw,2.6rem);margin:.2rem 0 .9rem">Case breakdowns</h2>
+        <div class="reel-grid" id="reel-grid-videos"></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ============ MEDIA ============ -->
+<div class="page" id="media">
+  <section class="lead-pad">
+    <div class="wrap">
+      <span class="eyebrow">Media &amp; Press</span>
+      <h1 class="display" style="font-size:clamp(2.2rem,5vw,3.4rem);margin-bottom:1rem">Book Gregg</h1>
+      <p style="color:var(--grey);max-width:56ch;margin-bottom:40px">A former Chief of Gang Prosecutions turned true-crime author, equally at home discussing the case behind <em>Convergence</em>, the realities of the Illinois justice system, or a music career that spanned two decades. Available for podcasts, broadcast, panels, and print.</p>
+      <div class="press" style="text-align:left;padding:0">
+        <p class="quote" style="margin:0 0 1rem">“Gregg Owen brings a prosecutor’s eye and a storyteller’s voice.”</p>
+        <div class="src">Law &amp; Crime</div>
+      </div>
+      <div class="logos" style="justify-content:flex-start;margin-top:42px">
+        <div class="ph"><span>press logo</span></div>
+        <div class="ph"><span>press logo</span></div>
+        <div class="ph"><span>press logo</span></div>
+        <div class="ph"><span>press logo</span></div>
+      </div>
+      <div style="margin-top:48px">
+        <a class="btn btn-red" data-target="contact">Request an Interview</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ============ CONTACT ============ -->
+<div class="page" id="contact">
+  <section class="lead-pad">
+    <div class="wrap">
+      <span class="eyebrow">Contact</span>
+      <h1 class="display" style="font-size:clamp(2.2rem,5vw,3.6rem);margin-bottom:2.4rem">Get in touch</h1>
+      <div class="contact-grid">
+        <div>
+          <div class="field"><label>Name</label><input type="text" placeholder="Your name"></div>
+          <div class="field"><label>Email</label><input type="email" placeholder="you@example.com"></div>
+          <div class="field"><label>Reason</label>
+            <select><option>Media / interview request</option><option>Speaking &amp; appearances</option><option>Book inquiry</option><option>General</option></select>
+          </div>
+          <div class="field"><label>Message</label><textarea placeholder="Tell Gregg a little about your request…"></textarea></div>
+          <button class="btn btn-red" onclick="mockSubmit('contact-msg')">Send Message</button>
+          <p class="form-note">Spam protection (honeypot + challenge) to be wired on the live build.</p>
+          <div id="contact-msg">Thanks. This is a demo form; on the live site it routes to Gregg’s inbox.</div>
+        </div>
+        <aside class="contact-aside">
+          <div class="ci"><div class="k">Media &amp; Booking</div><div class="v">booking@greggowen26th.com</div></div>
+          <div class="ci"><div class="k">Follow</div><div class="v"><a href="https://www.instagram.com/greggowen26th/" target="_blank" rel="noopener" style="border-bottom:1px solid var(--red)">@greggowen26th</a></div></div>
+          <div class="ci"><div class="k">The Book</div><div class="v"><a data-target="books" style="border-bottom:1px solid var(--red);cursor:pointer">Convergence</a></div></div>
+        </aside>
+      </div>
+    </div>
+  </section>
+</div>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <a class="brand" data-target="home">GREGG <b>OWEN</b></a>
+      <nav class="foot-links">
+        <a data-target="home">Home</a>
+        <a data-target="about">About</a>
+        <a data-target="books">Books</a>
+        <a data-target="videos">Videos</a>
+        <a data-target="media">Media</a>
+        <a data-target="contact">Contact</a>
+      </nav>
+    </div>
+    <p class="foot-note">© <span id="yr"></span> Gregg Owen. Rock Star. Prosecutor. True Crime Storyteller.</p>
+  </div>
+</footer>
+
+<div class="mock-flag" id="mockflag">
+  Mockup: design draft for review. Content pending Gregg’s sign-off.
+  <button onclick="document.getElementById('mockflag').style.display='none'">Hide</button>
+</div>
+
+<script>
+  // ---- real video data (Gregg's existing YouTube reels) ----
+  var reels = [
+    {id:"niNpnqBlAZs", t:"He Secretly Wired Chicago’s Courtrooms for 4 Years"},
+    {id:"Ie-f7xiLBh8", t:"Corruption in the Courtroom: The Mole"},
+    {id:"kSjXA8-grak", t:"Corruption in the Courtroom: The Mole, Pt. 2"},
+    {id:"-AUBMw6pg7E", t:"Could You Have Done What He Did?"}
+  ];
+  function renderReels(elId){
+    var el = document.getElementById(elId); if(!el) return;
+    el.innerHTML = reels.map(function(r){
+      return '<a class="reel" href="https://www.youtube.com/watch?v='+r.id+'" target="_blank" rel="noopener">'+
+        '<div class="reel-thumb"><img loading="lazy" src="https://i.ytimg.com/vi/'+r.id+'/hqdefault.jpg" alt=""></div>'+
+        '<div class="cap">'+r.t+'</div></a>';
+    }).join("");
+  }
+  renderReels("reel-grid-home");
+  renderReels("reel-grid-videos");
+
+  // ---- Instagram data: follower count + latest reels ----
+  // Both features are fed by ONE serverless endpoint that calls the Instagram Graph
+  // API on a schedule and caches the result (so the access token stays server-side
+  // and the page always gets Gregg's most recent reels). It should return JSON like:
+  //   { "followers": 132340,
+  //     "reels": ["https://www.instagram.com/reel/AAA/","https://www.instagram.com/reel/BBB/"] }
+  // reels[] must be newest-first; the page shows the first IG_MAX_REELS of them.
+  // Until the endpoint is set, the badge uses the static number in the HTML and the
+  // reels use the manual FALLBACK_REELS list below.
+  var IG_ENDPOINT = "";     // e.g. "https://your-function.netlify.app/instagram"
+  var IG_MAX_REELS = 3;     // most-recent reels to show (1-3)
+  var FALLBACK_REELS = [    // TEMP: manual list (newest first) standing in for the live feed until IG_ENDPOINT is set
+    "https://www.instagram.com/reel/Ddj_MMoJCMy/",
+    "https://www.instagram.com/reel/Ddh72k8iPbP/",
+    "https://www.instagram.com/reel/DdX02wBCaOC/"
+  ];
+
+  function formatCount(n){
+    n = Number(n);
+    if(n >= 1000000) return (n/1000000).toFixed(1).replace(/\.0$/,'') + 'M';
+    if(n >= 1000) return Math.round(n/1000) + 'K';
+    return String(n);
+  }
+  function loadInstagramEmbed(){
+    if(document.getElementById('ig-embed-js')) return;
+    var s = document.createElement('script');
+    s.id = 'ig-embed-js'; s.async = true; s.src = 'https://www.instagram.com/embed.js';
+    document.body.appendChild(s);
+  }
+  function renderIgReels(reels){
+    var el = document.getElementById('ig-reel-grid'); if(!el) return;
+    var urls = (reels || []).map(function(x){ return typeof x === 'string' ? x : (x && x.permalink); })
+                            .filter(Boolean).slice(0, IG_MAX_REELS);
+    if(!urls.length){
+      el.innerHTML = '<p class="ig-empty">Gregg’s latest reels appear here once the Instagram feed is connected.</p>';
+      return;
+    }
+    el.innerHTML = urls.map(function(url){
+      return '<blockquote class="instagram-media" data-instgrm-permalink="'+url+'" data-instgrm-version="14"></blockquote>';
+    }).join("");
+    // Render embeds: process now if the script is loaded, otherwise load it (it auto-processes on load).
+    if(window.instgrm && window.instgrm.Embeds){ window.instgrm.Embeds.process(); }
+    else { loadInstagramEmbed(); }
+  }
+  function loadInstagramData(){
+    renderIgReels(FALLBACK_REELS);            // show fallback immediately
+    if(!IG_ENDPOINT) return;                  // no endpoint yet -> keep static badge + fallback reels
+    fetch(IG_ENDPOINT).then(function(r){ return r.json(); }).then(function(d){
+      if(d && d.followers != null){ var c = document.getElementById('ig-count'); if(c) c.textContent = formatCount(d.followers); }
+      if(d && d.reels && d.reels.length){ renderIgReels(d.reels); }
+    }).catch(function(){ /* network/endpoint issue -> keep static badge + fallback reels */ });
+  }
+  loadInstagramData();
+
+  // ---- simple page router ----
+  function showPage(id){
+    document.querySelectorAll('.page').forEach(function(p){p.classList.toggle('active', p.id===id);});
+    document.querySelectorAll('.nav-links a[data-target]').forEach(function(a){
+      a.classList.toggle('active', a.getAttribute('data-target')===id);
+    });
+    window.scrollTo({top:0,behavior:'auto'});
+    if(history.replaceState) history.replaceState(null,'','#'+id);
+    document.getElementById('navlinks').classList.remove('open');
+  }
+  document.addEventListener('click', function(e){
+    var t = e.target.closest('[data-target]');
+    if(t){ e.preventDefault(); showPage(t.getAttribute('data-target')); }
+  });
+  // open from hash
+  var start = (location.hash||'#home').replace('#','');
+  if(document.getElementById(start)) showPage(start);
+
+  // ---- burger ----
+  document.getElementById('burger').addEventListener('click', function(){
+    document.getElementById('navlinks').classList.toggle('open');
+  });
+
+  // ---- mock form feedback ----
+  function mockSubmit(msgId){
+    if(msgId){ var m=document.getElementById(msgId); if(m) m.style.display='block'; }
+    else { alert('Demo only. Mailing list signup will be wired to the live provider.'); }
+  }
+
+  document.getElementById('yr').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
