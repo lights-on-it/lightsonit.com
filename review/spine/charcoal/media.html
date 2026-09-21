@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Media | Division 26</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bitter:wght@500;600;700;800&family=Libre+Franklin:wght@400;500;600;700&family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/base.css">
+<link rel="stylesheet" href="../../assets/layout-spine.css">
+<link rel="stylesheet" href="../../assets/palette-charcoal.css">
+</head>
+<body>
+<div class="shell">
+  <aside class="spine">
+    <a class="sbrand" href="index.html">
+      <img src="../../assets/logo.png" alt="Division 26">
+      <span class="bt">Division 26<small>Independent imprint</small></span>
+    </a>
+    <button class="spine-toggle" aria-label="Menu" aria-expanded="false">Menu</button>
+    <nav class="snav">
+      <a href="index.html">Home</a>
+      <a href="authors.html">Authors</a>
+      <a href="books.html">Books</a>
+      <a href="about.html">About</a>
+      <a href="media.html" class="on">Media</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="spine-foot">
+      <p>Told from inside the room.</p>
+      <a class="navjoin" href="media.html">Newsletter</a>
+    </div>
+  </aside>
+
+  <div class="main">
+    <main>
+      <section class="shero">
+        <div class="swrap">
+          <p class="eyebrow">Media</p>
+          <h1>Case files and coverage.</h1>
+          <p class="lede">Trial notes, release news, and press. Join the list to hear it first.</p>
+        </div>
+      </section>
+
+      <section class="sblock">
+        <div class="swrap">
+          <div class="rule"></div>
+          <h2>Division 26 Media</h2>
+          <p>A short letter, sent when there is something worth sending. Notes from the desk, new titles, and events. No noise.</p>
+          <form class="field" onsubmit="return false">
+            <input type="email" placeholder="you@email.com" aria-label="Email address">
+            <button class="btn btn-solid" type="submit">Join the list</button>
+          </form>
+          <p class="muted" style="font-size:.9rem;margin-top:.8rem">A working form gets wired up before launch.</p>
+        </div>
+      </section>
+
+      <section class="sblock tan">
+        <div class="swrap">
+          <div class="section-head">
+            <p class="eyebrow">Follow along</p>
+            <h2>On the channels.</h2>
+          </div>
+          <div class="authors-grid">
+            <a class="acard" style="--spine:var(--author-1)" href="https://www.instagram.com/greggowen26th/">
+              <h3>Instagram</h3>
+              <p class="muted">Case photographs and behind the book.</p>
+              <span class="more">Follow</span>
+            </a>
+            <a class="acard" style="--spine:var(--author-2)" href="https://www.youtube.com/@greggowen26th">
+              <h3>YouTube</h3>
+              <p class="muted">The Case Files series and interviews.</p>
+              <span class="more">Watch</span>
+            </a>
+            <a class="acard" style="--spine:var(--author-3)" href="https://www.facebook.com/greggowen26th">
+              <h3>Facebook</h3>
+              <p class="muted">Events and appearances.</p>
+              <span class="more">Follow</span>
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="foot">
+      <div class="wrap">
+        <div class="cols">
+          <div>
+            <div class="brandline"><img src="../../assets/logo.png" alt="Division 26"><strong>Division 26</strong></div>
+            <p>An independent true crime imprint. Chicago and beyond.</p>
+          </div>
+          <div class="col">
+            <h4>Explore</h4>
+            <a href="authors.html">Authors</a>
+            <a href="books.html">Books</a>
+            <a href="about.html">About</a>
+            <a href="media.html">Media</a>
+          </div>
+          <div class="col">
+            <h4>Connect</h4>
+            <a href="https://www.instagram.com/greggowen26th/">Instagram</a>
+            <a href="https://www.facebook.com/greggowen26th">Facebook</a>
+            <a href="https://www.youtube.com/@greggowen26th">YouTube</a>
+          </div>
+          <div class="col">
+            <h4>Imprint</h4>
+            <a href="about.html">Our story</a>
+            <a href="contact.html">Contact</a>
+            <a href="contact.html">Submissions</a>
+          </div>
+        </div>
+        <div class="base">
+          <span>&copy; 2026 Division 26</span>
+          <span>Told from inside the room</span>
+        </div>
+      </div>
+    </footer>
+  </div>
+</div>
+<script>
+(function(){
+  var t=document.querySelector('.spine-toggle'),n=document.querySelector('.snav');
+  if(t&&n)t.addEventListener('click',function(){var o=n.classList.toggle('open');t.setAttribute('aria-expanded',o)});
+})();
+</script>
+</body>
+</html>

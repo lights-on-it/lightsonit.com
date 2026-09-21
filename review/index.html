@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Division 26 | Design Review</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bitter:wght@600;700;800&family=Libre+Franklin:wght@400;500;600&family=Barlow+Condensed:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#F3EDE3;--ink:#23201C;--muted:#6F6558;--tan:#BFB3A3;--hair:#DCD2C2;--panel:#EAE1D3}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:"Libre Franklin",system-ui,Arial,sans-serif;line-height:1.6}
+.wrap{max-width:1000px;margin:0 auto;padding:0 24px}
+header{border-bottom:1px solid var(--hair);padding:40px 0}
+.brand{display:flex;align-items:center;gap:14px}
+.brand img{width:52px;height:52px}
+h1{font-family:"Bitter",Georgia,serif;font-size:1.9rem;margin:0}
+.sub{font-family:"Barlow Condensed",sans-serif;text-transform:uppercase;letter-spacing:.18em;font-size:.72rem;color:var(--muted);margin-top:.3rem}
+.intro{max-width:66ch;color:var(--muted);margin:22px 0 0}
+.layout{padding:40px 0;border-bottom:1px solid var(--hair)}
+.lhead{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:6px}
+.lhead h2{font-family:"Bitter",serif;font-size:1.4rem;margin:0}
+.badge{font-family:"Barlow Condensed",sans-serif;text-transform:uppercase;letter-spacing:.12em;font-size:.7rem;padding:4px 10px;border-radius:2px;background:#586B39;color:#fff}
+.ldesc{color:var(--muted);max-width:68ch;margin:0 0 22px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px}
+.card{border:1px solid var(--hair);background:#fff;border-radius:4px;overflow:hidden;display:flex;flex-direction:column}
+.swatches{display:flex;height:70px}
+.swatches span{flex:1}
+.cbody{padding:16px 18px}
+.cbody h3{font-family:"Bitter",serif;font-size:1.05rem;margin:0 0 2px}
+.cbody p{font-size:.85rem;color:var(--muted);margin:0 0 14px}
+.open{display:inline-block;font-family:"Barlow Condensed",sans-serif;text-transform:uppercase;letter-spacing:.1em;font-weight:600;font-size:.82rem;padding:9px 16px;background:var(--ink);color:var(--paper);border-radius:2px}
+.pages{margin-top:10px;font-size:.78rem;color:var(--muted)}
+.pages a{color:var(--muted)}
+.pages a:hover{color:var(--ink)}
+footer{padding:34px 0;color:var(--muted);font-size:.85rem}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="brand">
+      <img src="assets/logo.png" alt="Division 26">
+      <div>
+        <h1>Division 26</h1>
+        <div class="sub">Design review</div>
+      </div>
+    </div>
+    <p class="intro">Two layouts, each in three neutral palettes. The publisher stays quiet so the author, and the author's color, stand out. Open any option to click through the full site. Every version has the same content, so you are comparing layout and color directly. For a fair look, view at 100 percent browser zoom.</p>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="layout">
+    <div class="lhead">
+      <h2>Layout 1 &middot; Masthead</h2>
+      <span class="badge">Option</span>
+    </div>
+    <p class="ldesc">Editorial classic. Horizontal nav, a large serif wordmark, a stated imprint hero, and a lead-title feature that gives the single book and author room to breathe. Reads instantly as an established publisher.</p>
+    <div class="cards">
+      <div class="card">
+        <div class="swatches"><span style="background:#F4EEE4"></span><span style="background:#BFB3A3"></span><span style="background:#8A6D3B"></span><span style="background:#241F1A"></span></div>
+        <div class="cbody">
+          <h3>A &middot; Bronze and stone</h3>
+          <p>Warm literary, muted brass accent.</p>
+          <a class="open" href="masthead/bronze/index.html">Open</a>
+          <div class="pages"><a href="masthead/bronze/authors.html">Authors</a> &middot; <a href="masthead/bronze/books.html">Books</a> &middot; <a href="masthead/bronze/about.html">About</a></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="swatches"><span style="background:#F1EEE7"></span><span style="background:#BFB3A3"></span><span style="background:#3E4C59"></span><span style="background:#23262B"></span></div>
+        <div class="cbody">
+          <h3>B &middot; Slate and stone</h3>
+          <p>Cool and calm, blue-grey accent.</p>
+          <a class="open" href="masthead/slate/index.html">Open</a>
+          <div class="pages"><a href="masthead/slate/authors.html">Authors</a> &middot; <a href="masthead/slate/books.html">Books</a> &middot; <a href="masthead/slate/about.html">About</a></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="swatches"><span style="background:#F3EDE3"></span><span style="background:#BFB3A3"></span><span style="background:#7C6F59"></span><span style="background:#23201C"></span></div>
+        <div class="cbody">
+          <h3>C &middot; Charcoal and tan</h3>
+          <p>Quietest, no color accent.</p>
+          <a class="open" href="masthead/charcoal/index.html">Open</a>
+          <div class="pages"><a href="masthead/charcoal/authors.html">Authors</a> &middot; <a href="masthead/charcoal/books.html">Books</a> &middot; <a href="masthead/charcoal/about.html">About</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="layout">
+    <div class="lhead">
+      <h2>Layout 2 &middot; Spine</h2>
+      <span class="badge">Option</span>
+    </div>
+    <p class="ldesc">Fixed left sidebar. A vertical spine holds the logo and nav while the content reads as a calm single column beside it. Architectural and memorable, and it frames the author content like a book spine. On mobile the spine folds into a top bar.</p>
+    <div class="cards">
+      <div class="card">
+        <div class="swatches"><span style="background:#F4EEE4"></span><span style="background:#BFB3A3"></span><span style="background:#8A6D3B"></span><span style="background:#241F1A"></span></div>
+        <div class="cbody">
+          <h3>A &middot; Bronze and stone</h3>
+          <p>Warm literary, muted brass accent.</p>
+          <a class="open" href="spine/bronze/index.html">Open</a>
+          <div class="pages"><a href="spine/bronze/authors.html">Authors</a> &middot; <a href="spine/bronze/books.html">Books</a> &middot; <a href="spine/bronze/about.html">About</a></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="swatches"><span style="background:#F1EEE7"></span><span style="background:#BFB3A3"></span><span style="background:#3E4C59"></span><span style="background:#23262B"></span></div>
+        <div class="cbody">
+          <h3>B &middot; Slate and stone</h3>
+          <p>Cool and calm, blue-grey accent.</p>
+          <a class="open" href="spine/slate/index.html">Open</a>
+          <div class="pages"><a href="spine/slate/authors.html">Authors</a> &middot; <a href="spine/slate/books.html">Books</a> &middot; <a href="spine/slate/about.html">About</a></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="swatches"><span style="background:#F3EDE3"></span><span style="background:#BFB3A3"></span><span style="background:#7C6F59"></span><span style="background:#23201C"></span></div>
+        <div class="cbody">
+          <h3>C &middot; Charcoal and tan</h3>
+          <p>Quietest, no color accent.</p>
+          <a class="open" href="spine/charcoal/index.html">Open</a>
+          <div class="pages"><a href="spine/charcoal/authors.html">Authors</a> &middot; <a href="spine/charcoal/books.html">Books</a> &middot; <a href="spine/charcoal/about.html">About</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="wrap">Division 26 design review. Internal preview, not indexed. Two layouts, three palettes.</footer>
+</body>
+</html>
