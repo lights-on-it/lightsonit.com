@@ -254,13 +254,14 @@
     .about-portrait{position:static}
   }
   @media(max-width:768px){
-    .hero{min-height:86vh}
+    .hero{min-height:86vh;align-items:flex-start;padding-top:90px;padding-bottom:30px}
     .hero-bg{background-image:
-      linear-gradient(90deg,var(--ink) 0%,rgba(11,11,12,.72) 30%,rgba(11,11,12,.42) 58%,transparent 82%),
-      linear-gradient(0deg,rgba(11,11,12,.92) 0%,rgba(11,11,12,.46) 32%,transparent 60%),
+      linear-gradient(90deg,var(--ink) 0%,rgba(11,11,12,.88) 36%,rgba(11,11,12,.5) 60%,rgba(11,11,12,.12) 82%,transparent 100%),
+      linear-gradient(0deg,rgba(11,11,12,.94) 0%,rgba(11,11,12,.5) 30%,transparent 58%),
       url('banner-image-1024x480.png');
-      background-size:cover,cover,cover;background-position:center,center,74% 12%}
-    .hero p.sub{max-width:26ch}
+      background-size:cover,cover,cover;background-position:center,center,71% 6%}
+    .hero h1{font-size:clamp(1.85rem,7.6vw,2.5rem);line-height:1}
+    .hero p.sub{max-width:23ch;margin:1.2rem 0 1.6rem;font-size:1rem}
     .quote-band{padding:46px 0}
     .quote-card{padding:24px 24px 20px}
     .quote-card p{font-size:1.4rem}
