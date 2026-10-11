@@ -127,9 +127,29 @@
   .playlist{background:var(--panel);border-top:1px solid var(--line);border-bottom:1px solid var(--line);text-align:center}
   .playlist h2{font-size:clamp(2rem,4.5vw,3rem);margin:.3rem 0 .5rem}
   .playlist .sub{color:var(--grey);max-width:56ch;margin:0 auto}
-  .player-frame{position:relative;max-width:900px;margin:2.2rem auto 0;aspect-ratio:16/9;
-    border:1px solid var(--line);background:#000;box-shadow:0 30px 60px rgba(0,0,0,.5)}
-  .player-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block}
+  /* vertical video shelf (9:16 facades, one player at a time) */
+  .vshelf{display:flex;gap:16px;margin-top:2.2rem;text-align:left;
+    overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding-bottom:14px}
+  .vshelf::-webkit-scrollbar{height:8px}
+  .vshelf::-webkit-scrollbar-thumb{background:var(--line);border-radius:4px}
+  .vcard{flex:0 0 70vw;max-width:300px;scroll-snap-align:center}
+  .vframe{position:relative;width:100%;aspect-ratio:9/16;max-height:80vh;max-height:80svh;
+    border:1px solid var(--line);border-radius:5px;overflow:hidden;background:#000}
+  .vframe .poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+  .vframe iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block}
+  .vplay{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+    width:64px;height:64px;display:flex;align-items:center;justify-content:center;
+    background:rgba(176,40,43,.92);color:#fff;border:0;border-radius:50%;cursor:pointer;
+    transition:background .2s ease,transform .15s ease}
+  .vplay:hover{background:var(--red-bright);transform:translate(-50%,-50%) scale(1.08)}
+  .vplay:focus-visible{outline:3px solid var(--bone);outline-offset:3px;background:var(--red-bright)}
+  .vtitle{font-family:var(--display);font-weight:500;text-transform:uppercase;letter-spacing:.03em;
+    font-size:.9rem;line-height:1.25;color:var(--bone);margin-top:.7rem}
+  @media(min-width:900px){
+    .vshelf{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,270px));justify-content:center;
+      gap:20px;overflow:visible;scroll-snap-type:none;padding-bottom:0}
+    .vcard{flex:none;max-width:none}
+  }
 
   /* ---------- featured book ---------- */
   .book{background:var(--panel);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
@@ -334,12 +354,7 @@
       <span class="eyebrow">Watch the Series</span>
       <h2 class="display">True Crime, From the Inside</h2>
       <p class="sub">Gregg’s full video series: courtroom corruption, the cases he tried, and the stories behind them.</p>
-      <div class="player-frame">
-        <iframe src="https://www.youtube.com/embed/videoseries?list=PLEs8E2bytK9M"
-          title="Gregg Owen true-crime video series" loading="lazy"
-          allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-      </div>
+      <div class="vshelf" id="vshelf"></div>
     </div>
   </section>
 
@@ -639,6 +654,111 @@
   }
   renderReels("reel-grid-home");
   renderReels("reel-grid-videos");
+
+  // ---- vertical video shelf (9:16 YouTube facades, one player at a time) ----
+  // The YouTube playlist is the source of truth (loaded below via the Data API).
+  // This array is an offline snapshot of that playlist: it renders instantly and is
+  // used if the API is unreachable. Entry shape: { id, title, poster?, thumb? }.
+  var vreels = [
+    { id:"n913Vfcea7c", title:"Linda Sang Knew the Truth  Then the Rita Dowd Case Changed" },
+    { id:"S8sMOa35loM", title:"She Thought She Was Going on a Date  The Rita Dowd Case" },
+    { id:"78BBtvPd_TA", title:"Why Not Just Walk Away  Mistresses & Murder" }
+  ];
+  var V_PLAY_SVG = '<svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg>';
+  var activeVFrame = null;
+  // Poster candidates, best first. oar2.jpg is YouTube's original-aspect thumbnail
+  // (native 9:16 for vertical videos); it is undocumented, so every step falls through.
+  function vPosterChain(r){
+    var list = [];
+    if(r.poster) list.push(r.poster);                                  // local 9:16 override
+    list.push('https://i.ytimg.com/vi/' + r.id + '/oar2.jpg');          // native 9:16
+    if(r.thumb) list.push(r.thumb);                                    // API 16:9, center-cropped
+    list.push('https://i.ytimg.com/vi/' + r.id + '/hqdefault.jpg');     // always exists
+    return list;
+  }
+  function vFacade(frame){
+    var r = frame._reel;
+    frame.innerHTML = '';
+    var img = document.createElement('img');
+    img.className = 'poster'; img.loading = 'lazy'; img.alt = '';
+    var srcs = vPosterChain(r), k = 0;
+    function nextPoster(){ if(k < srcs.length - 1){ img.src = srcs[++k]; } }
+    img.onerror = nextPoster;
+    // A missing YouTube thumbnail returns a 120x90 gray placeholder instead of an error.
+    img.onload = function(){ if(img.naturalWidth <= 120){ nextPoster(); } };
+    img.src = srcs[0];
+    var btn = document.createElement('button');
+    btn.type = 'button'; btn.className = 'vplay';
+    btn.setAttribute('aria-label', 'Play video: ' + r.title);
+    btn.innerHTML = V_PLAY_SVG;
+    btn.addEventListener('click', function(){ vPlay(frame); });
+    frame.appendChild(img); frame.appendChild(btn);
+  }
+  function vPlay(frame){
+    if(activeVFrame && activeVFrame !== frame){ vFacade(activeVFrame); } // stop the previous one
+    activeVFrame = frame;
+    var r = frame._reel;
+    var iframe = document.createElement('iframe');
+    iframe.src = 'https://www.youtube-nocookie.com/embed/' + r.id + '?autoplay=1&playsinline=1&rel=0';
+    iframe.title = r.title;
+    iframe.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+    iframe.setAttribute('allowfullscreen', '');
+    frame.innerHTML = '';
+    frame.appendChild(iframe);
+  }
+  function renderVShelf(elId){
+    var el = document.getElementById(elId); if(!el) return;
+    el.innerHTML = '';
+    vreels.forEach(function(r){
+      var card = document.createElement('div'); card.className = 'vcard';
+      var frame = document.createElement('div'); frame.className = 'vframe'; frame._reel = r;
+      vFacade(frame);
+      var title = document.createElement('div'); title.className = 'vtitle'; title.textContent = r.title;
+      card.appendChild(frame); card.appendChild(title);
+      el.appendChild(card);
+    });
+  }
+  renderVShelf('vshelf');   // placeholders render instantly; real playlist swaps in below
+
+  // ---- auto-populate the shelf from the YouTube playlist (Path B) ----
+  // 1) The playlist must be PUBLIC for a key-only read.
+  // 2) Paste a YouTube Data API key below, restricted to this site's domain + YouTube Data API v3.
+  // When YT_API_KEY is set, the shelf replaces the placeholder videos above with the real
+  // playlist contents (IDs, titles, thumbnails) and stays in sync as Gregg adds videos.
+  var YT_API_KEY = "AIzaSyBjF7U_LB-Nwk7cODy6Esr-lpNoxS2oTKw";  // read-only, domain-restricted
+  var YT_PLAYLIST_ID = "PLEs8E2bytK9M";  // Gregg's vertical series playlist
+  var YT_CACHE_HOURS = 4;                 // cache the result to limit API calls
+  var YT_POSTER_OVERRIDES = {};           // optional local 9:16 posters: { "<videoId>": "posters/clip.webp" }
+  function ytThumb(sn){
+    var t = (sn && sn.thumbnails) || {};
+    return ((t.maxres || t.standard || t.high || t.medium || t.default || {}).url) || "";
+  }
+  function loadPlaylistShelf(){
+    if(!YT_API_KEY) return;               // no key yet -> keep the placeholder videos above
+    var cacheKey = 'ytpl_v2_' + YT_PLAYLIST_ID;  // bump the version if the cached shape changes
+    try {
+      var c = JSON.parse(localStorage.getItem(cacheKey) || 'null');
+      if(c && (Date.now() - c.t) < YT_CACHE_HOURS * 36e5 && c.list && c.list.length){
+        vreels = c.list; renderVShelf('vshelf'); return;
+      }
+    } catch(e){}
+    fetch('https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId='
+          + encodeURIComponent(YT_PLAYLIST_ID) + '&key=' + encodeURIComponent(YT_API_KEY))
+      .then(function(r){ return r.json(); })
+      .then(function(d){
+        if(!d || !d.items) return;
+        var list = d.items.map(function(it){
+          var sn = it.snippet || {};
+          var vid = (sn.resourceId && sn.resourceId.videoId) || '';
+          return { id: vid, title: (sn.title || '').trim(), poster: YT_POSTER_OVERRIDES[vid], thumb: ytThumb(sn) || undefined };
+        }).filter(function(r){ return r.id && r.title && r.title !== 'Deleted video' && r.title !== 'Private video'; });
+        if(list.length){
+          vreels = list; renderVShelf('vshelf');
+          try { localStorage.setItem(cacheKey, JSON.stringify({ t: Date.now(), list: list })); } catch(e){}
+        }
+      }).catch(function(){ /* keep the placeholders on any error */ });
+  }
+  loadPlaylistShelf();
 
   // ---- Instagram data: follower count + latest reels ----
   // Both features are fed by ONE serverless endpoint that calls the Instagram Graph
