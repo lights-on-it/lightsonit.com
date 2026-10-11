@@ -1,0 +1,40 @@
+name: Refresh video data
+
+# Pulls Gregg's YouTube playlist into Gregg/data/playlist.json so the site can show it
+# without an API key in the page. The key lives in the YT_API_KEY repository secret.
+
+on:
+  schedule:
+    - cron: "17 */4 * * *"   # every 4 hours, at 17 minutes past
+  workflow_dispatch:          # "Run workflow" button on the Actions tab
+
+permissions:
+  contents: write             # needed to commit the updated data file
+
+concurrency:
+  group: refresh-video-data
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Fetch the YouTube playlist
+        env:
+          YT_API_KEY: ${{ secrets.YT_API_KEY }}
+        run: python3 .github/scripts/fetch_youtube_playlist.py
+
+      - name: Commit if the data changed
+        run: |
+          if [ -z "$(git status --porcelain -- Gregg/data)" ]; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add Gregg/data
+          git commit -m "Refresh video data"
+          git push

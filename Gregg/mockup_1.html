@@ -4,8 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Gregg Owen | Rock Star. Prosecutor. True Crime Storyteller.</title>
-<link rel="icon" type="image/png" href="https://www.greggowen26th.com/wp-content/uploads/2026/06/division-logo.png">
-<link rel="apple-touch-icon" href="https://www.greggowen26th.com/wp-content/uploads/2026/06/division-logo.png">
+<!-- favicon + apple-touch-icon: pending a logo from the client -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;500;600;700&family=Lora:ital,wght@0,500;1,500;1,600&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
@@ -401,7 +400,7 @@
       </div>
       <div class="acts">
         <article class="act">
-          <img class="act-img" src="https://www.greggowen26th.com/wp-content/uploads/2026/06/gregg-owen-with-band-jerico-688x1024.jpeg" alt="Gregg Owen with his band" loading="lazy">
+          <div class="ph"><span>Band era / on stage<br>[ client photo ]</span></div>
           <div class="act-body">
             <span class="tag">Act I: Rock Star</span>
             <h3>Touring the world</h3>
@@ -409,7 +408,7 @@
           </div>
         </article>
         <article class="act">
-          <img class="act-img" src="https://www.greggowen26th.com/wp-content/uploads/2026/06/gregg-owen-prosecutor-with-daley-e1780949558597-681x1024.jpeg" alt="Gregg Owen as prosecutor" loading="lazy">
+          <div class="ph"><span>Prosecutor era<br>[ client photo ]</span></div>
           <div class="act-body">
             <span class="tag">Act II: Prosecutor</span>
             <h3>Fighting killers</h3>
@@ -656,9 +655,10 @@
   renderReels("reel-grid-videos");
 
   // ---- vertical video shelf (9:16 YouTube facades, one player at a time) ----
-  // The YouTube playlist is the source of truth (loaded below via the Data API).
-  // This array is an offline snapshot of that playlist: it renders instantly and is
-  // used if the API is unreachable. Entry shape: { id, title, poster?, thumb? }.
+  // The YouTube playlist is the source of truth, loaded below from data/playlist.json.
+  // This array is a built-in snapshot of that playlist: it renders instantly and stays
+  // if the data file can't load. Entry shape: { id, title, thumb? }.
+  var YT_POSTER_OVERRIDES = {};  // optional local 9:16 posters: { "<videoId>": "posters/clip.webp" }
   var vreels = [
     { id:"n913Vfcea7c", title:"Linda Sang Knew the Truth  Then the Rita Dowd Case Changed" },
     { id:"S8sMOa35loM", title:"She Thought She Was Going on a Date  The Rita Dowd Case" },
@@ -670,7 +670,7 @@
   // (native 9:16 for vertical videos); it is undocumented, so every step falls through.
   function vPosterChain(r){
     var list = [];
-    if(r.poster) list.push(r.poster);                                  // local 9:16 override
+    if(YT_POSTER_OVERRIDES[r.id]) list.push(YT_POSTER_OVERRIDES[r.id]); // local 9:16 override
     list.push('https://i.ytimg.com/vi/' + r.id + '/oar2.jpg');          // native 9:16
     if(r.thumb) list.push(r.thumb);                                    // API 16:9, center-cropped
     list.push('https://i.ytimg.com/vi/' + r.id + '/hqdefault.jpg');     // always exists
@@ -720,43 +720,25 @@
   }
   renderVShelf('vshelf');   // placeholders render instantly; real playlist swaps in below
 
-  // ---- auto-populate the shelf from the YouTube playlist (Path B) ----
-  // 1) The playlist must be PUBLIC for a key-only read.
-  // 2) Paste a YouTube Data API key below, restricted to this site's domain + YouTube Data API v3.
-  // When YT_API_KEY is set, the shelf replaces the placeholder videos above with the real
-  // playlist contents (IDs, titles, thumbnails) and stays in sync as Gregg adds videos.
-  var YT_API_KEY = "AIzaSyBjF7U_LB-Nwk7cODy6Esr-lpNoxS2oTKw";  // read-only, domain-restricted
-  var YT_PLAYLIST_ID = "PLEs8E2bytK9M";  // Gregg's vertical series playlist
-  var YT_CACHE_HOURS = 4;                 // cache the result to limit API calls
-  var YT_POSTER_OVERRIDES = {};           // optional local 9:16 posters: { "<videoId>": "posters/clip.webp" }
-  function ytThumb(sn){
-    var t = (sn && sn.thumbnails) || {};
-    return ((t.maxres || t.standard || t.high || t.medium || t.default || {}).url) || "";
+  // ---- load the current playlist from data/playlist.json ----
+  // A scheduled GitHub Action (.github/workflows/refresh-video-data.yml) calls the YouTube
+  // API with a key kept in repository secrets and writes this file, so no key lives in the
+  // page. The built-in list above shows until the file loads, and stays if it can't load
+  // (for example, when the page is opened straight from disk).
+  var YT_DATA_URL = 'data/playlist.json';
+  function sameVideos(a, b){
+    return a.length === b.length && a.every(function(v, i){ return v.id === b[i].id && v.title === b[i].title; });
   }
   function loadPlaylistShelf(){
-    if(!YT_API_KEY) return;               // no key yet -> keep the placeholder videos above
-    var cacheKey = 'ytpl_v2_' + YT_PLAYLIST_ID;  // bump the version if the cached shape changes
-    try {
-      var c = JSON.parse(localStorage.getItem(cacheKey) || 'null');
-      if(c && (Date.now() - c.t) < YT_CACHE_HOURS * 36e5 && c.list && c.list.length){
-        vreels = c.list; renderVShelf('vshelf'); return;
-      }
-    } catch(e){}
-    fetch('https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId='
-          + encodeURIComponent(YT_PLAYLIST_ID) + '&key=' + encodeURIComponent(YT_API_KEY))
-      .then(function(r){ return r.json(); })
+    fetch(YT_DATA_URL, { cache: 'no-cache' })
+      .then(function(r){ if(!r.ok){ throw new Error('HTTP ' + r.status); } return r.json(); })
       .then(function(d){
-        if(!d || !d.items) return;
-        var list = d.items.map(function(it){
-          var sn = it.snippet || {};
-          var vid = (sn.resourceId && sn.resourceId.videoId) || '';
-          return { id: vid, title: (sn.title || '').trim(), poster: YT_POSTER_OVERRIDES[vid], thumb: ytThumb(sn) || undefined };
-        }).filter(function(r){ return r.id && r.title && r.title !== 'Deleted video' && r.title !== 'Private video'; });
-        if(list.length){
-          vreels = list; renderVShelf('vshelf');
-          try { localStorage.setItem(cacheKey, JSON.stringify({ t: Date.now(), list: list })); } catch(e){}
-        }
-      }).catch(function(){ /* keep the placeholders on any error */ });
+        var list = ((d && d.videos) || []).filter(function(v){ return v.id && v.title; })
+          .map(function(v){ return { id: v.id, title: v.title, thumb: v.thumb || undefined }; });
+        // Re-render only when the list differs, so an already-started video keeps playing.
+        if(list.length && !sameVideos(list, vreels)){ vreels = list; renderVShelf('vshelf'); }
+      })
+      .catch(function(){ /* keep the built-in list */ });
   }
   loadPlaylistShelf();
 
