@@ -8,7 +8,8 @@ Environment variables:
   YT_API_KEY      Required. YouTube Data API v3 key.
   YT_PLAYLIST_ID  Playlist to read. Default: Gregg's vertical series.
   OUT_PATH        Where to write the JSON. Default: Gregg/data/playlist.json
-  YT_REFERER      Optional. Only needed when testing with a website-restricted key.
+  YT_REFERER      Optional. Sent as the Referer header. Needed when the key has a
+                  Websites restriction, and must match an allowed entry. Keep it secret.
 """
 import json
 import os
@@ -25,6 +26,18 @@ THUMB_ORDER = ("maxres", "standard", "high", "medium", "default")
 HEARTBEAT_DAYS = 30
 
 
+def redact(text, *secrets):
+    """Remove secret values from text. Actions logs are public for a public repo."""
+    for secret in secrets:
+        if not secret:
+            continue
+        text = text.replace(secret, "[redacted]")
+        host = urllib.parse.urlsplit(secret).hostname
+        if host:
+            text = text.replace(host, "[redacted]")
+    return text
+
+
 def fetch_videos(key, playlist_id, referer=None):
     videos, page_token = [], None
     while True:
@@ -38,7 +51,11 @@ def fetch_videos(key, playlist_id, referer=None):
             with urllib.request.urlopen(req, timeout=20) as resp:
                 data = json.load(resp)
         except urllib.error.HTTPError as e:
-            sys.exit(f"YouTube API error {e.code}: {e.read().decode('utf-8', 'replace')[:500]}")
+            body = e.read().decode("utf-8", "replace")[:500]
+            hint = ""
+            if "referer" in body.lower():
+                hint = "\nHint: the YT_REFERER secret must match the key's Websites restriction."
+            sys.exit(f"YouTube API error {e.code}: {redact(body, key, referer)}{hint}")
         except urllib.error.URLError as e:
             sys.exit(f"Could not reach the YouTube API: {e.reason}")
 

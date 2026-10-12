@@ -1,7 +1,8 @@
 name: Refresh video data
 
 # Pulls Gregg's YouTube playlist into Gregg/data/playlist.json so the site can show it
-# without an API key in the page. The key lives in the YT_API_KEY repository secret.
+# without an API key in the page. The key and the Referer value its Websites restriction
+# requires live in repository secrets: YT_API_KEY and YT_REFERER.
 
 on:
   schedule:
@@ -25,6 +26,7 @@ jobs:
       - name: Fetch the YouTube playlist
         env:
           YT_API_KEY: ${{ secrets.YT_API_KEY }}
+          YT_REFERER: ${{ secrets.YT_REFERER }}
         run: python3 .github/scripts/fetch_youtube_playlist.py
 
       - name: Commit if the data changed
