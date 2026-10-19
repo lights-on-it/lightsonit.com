@@ -1,6 +1,6 @@
 :root{
   --author-1:#9B1B12;
-  --author-2:#3F5566;
+  --author-2:#2E6E69;
   --author-3:#586B39;
   --wrap:1080px;
   --serif:"Bitter",Georgia,"Times New Roman",serif;
@@ -9,6 +9,7 @@
 }
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
+section[id]{scroll-margin-top:96px}
 body{
   margin:0;
   background:var(--paper);

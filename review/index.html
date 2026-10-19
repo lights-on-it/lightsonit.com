@@ -27,15 +27,10 @@ h1{font-family:"Bitter",Georgia,serif;font-size:1.9rem;margin:0}
 .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px}
 .cards.four{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
 .card{border:1px solid var(--hair);background:#fff;border-radius:4px;overflow:hidden;display:flex;flex-direction:column}
-.swatches{display:flex;height:70px}
-.swatches span{flex:1}
 .cbody{padding:16px 18px}
 .cbody h3{font-family:"Bitter",serif;font-size:1.05rem;margin:0 0 2px}
 .cbody p{font-size:.85rem;color:var(--muted);margin:0 0 14px}
 .open{display:inline-block;text-decoration:none;font-family:"Barlow Condensed",sans-serif;text-transform:uppercase;letter-spacing:.1em;font-weight:600;font-size:.82rem;padding:9px 16px;background:var(--ink);color:var(--paper);border-radius:2px}
-.pages{margin-top:10px;font-size:.78rem;color:var(--muted)}
-.pages a{color:var(--muted)}
-.pages a:hover{color:var(--ink)}
 .badge.new{background:#3E4C59}
 .ref{font-size:.88rem;color:var(--muted);margin:-8px 0 22px}
 .ref a{color:var(--ink);border-bottom:1px solid var(--tan)}
@@ -49,7 +44,12 @@ h1{font-family:"Bitter",Georgia,serif;font-size:1.9rem;margin:0}
 .shares span{display:inline-block;padding:1px 7px;margin:2px 4px 2px 0;border:1px solid var(--tan);border-radius:2px;color:var(--ink)}
 .opens{display:flex;gap:8px;flex-wrap:wrap}
 .open.alt{background:none;color:var(--ink);border:1px solid var(--ink);padding:8px 15px}
-.round{font-family:"Barlow Condensed",sans-serif;text-transform:uppercase;letter-spacing:.18em;font-size:.78rem;color:var(--muted);padding:44px 0 0;margin:0}
+.palette{display:flex;flex-wrap:wrap;gap:20px 40px;margin-top:26px}
+.plabel{font-family:"Barlow Condensed",sans-serif;text-transform:uppercase;letter-spacing:.16em;font-size:.72rem;color:var(--muted);margin:0 0 8px}
+.chips{display:flex;flex-wrap:wrap;gap:10px 18px}
+.chip{display:flex;align-items:center;gap:8px;font-size:.82rem;line-height:1.25}
+.chip i{width:30px;height:30px;border-radius:2px;border:1px solid rgba(0,0,0,.12);flex:none}
+.chip small{display:block;color:var(--muted);font-size:.72rem}
 footer{padding:34px 0;color:var(--muted);font-size:.85rem}
 </style>
 </head>
@@ -63,7 +63,17 @@ footer{padding:34px 0;color:var(--muted);font-size:.85rem}
         <div class="sub">Design review</div>
       </div>
     </div>
-    <p class="intro">Round 2 keeps the Slate and stone colors you picked and tries four different typefaces and styles, each in both layouts. Round 1, with the original layouts and palettes, is further down. Every version has the same content, so you are comparing type and style directly. For a fair look, view at 100 percent browser zoom.</p>
+    <p class="intro">These keep the Slate and stone colors you picked and try four different typefaces and styles, each in both layouts. Every version has the same content, so you are comparing type and style directly. For a fair look, view at 100 percent browser zoom.</p>
+    <div class="palette">
+      <div>
+        <p class="plabel">Chosen palette &middot; Slate and stone</p>
+        <div class="chips"><span class="chip"><i style="background:#F1EEE7"></i><span>Paper<small>#F1EEE7</small></span></span><span class="chip"><i style="background:#E4DCCF"></i><span>Stone<small>#E4DCCF</small></span></span><span class="chip"><i style="background:#BFB3A3"></i><span>Tan<small>#BFB3A3</small></span></span><span class="chip"><i style="background:#3E4C59"></i><span>Slate<small>#3E4C59</small></span></span><span class="chip"><i style="background:#23262B"></i><span>Ink<small>#23262B</small></span></span></div>
+      </div>
+      <div>
+        <p class="plabel">Author colors</p>
+        <div class="chips"><span class="chip"><i style="background:#9B1B12"></i><span>Gregg Owen<small>#9B1B12</small></span></span><span class="chip"><i style="background:#2E6E69"></i><span>Jonathan Dixon<small>#2E6E69, for now</small></span></span></div>
+      </div>
+    </div>
   </div>
 </header>
 
@@ -71,7 +81,7 @@ footer{padding:34px 0;color:var(--muted);font-size:.85rem}
 
   <section class="layout">
     <div class="lhead">
-      <h2>Round 2 &middot; Slate and stone type studies</h2>
+      <h2>Slate and stone type studies</h2>
       <span class="badge new">New</span>
     </div>
     <p class="ldesc">Each study borrows from the type on Gregg's own site (tall Oswald capitals, Lora italic, Courier Prime case labels), so Division 26 and its authors read as one family. The imprint stays a step quieter and lighter than the author sites, and slate stays its color, while red stays Gregg's.</p>
@@ -81,7 +91,7 @@ footer{padding:34px 0;color:var(--muted);font-size:.85rem}
         <div class="spec"><i style="font-family:'Oswald',sans-serif">Independent imprint</i><b style="font-family:'Source Serif 4',serif">One roof.</b></div>
         <div class="cbody">
           <h3>1 &middot; Imprint</h3>
-          <p>Classic literary publisher. Closest to Round 1, with Gregg's type working in the details: labels, quotes, numerals.</p>
+          <p>Classic literary publisher. Closest to the first designs, with Gregg's type working in the details: labels, quotes, numerals.</p>
           <p class="fonts">Source Serif headlines, Oswald labels, Lora italic quotes</p>
           <p class="shares">Shared with Gregg: <span>Oswald</span><span>Lora</span></p>
           <div class="opens"><a class="open" href="masthead/slate-imprint/index.html">Masthead</a><a class="open alt" href="spine/slate-imprint/index.html">Spine</a></div>
@@ -120,84 +130,8 @@ footer{padding:34px 0;color:var(--muted);font-size:.85rem}
     </div>
   </section>
 
-  <p class="round">Round 1 &middot; Layouts and palettes</p>
-
-  <section class="layout">
-    <div class="lhead">
-      <h2>Layout 1 &middot; Masthead</h2>
-      <span class="badge">Option</span>
-    </div>
-    <p class="ldesc">Editorial classic. Horizontal nav, a large serif wordmark, a stated imprint hero, and a lead-title feature that gives the single book and author room to breathe. Reads instantly as an established publisher.</p>
-    <div class="cards">
-      <div class="card">
-        <div class="swatches"><span style="background:#F4EEE4"></span><span style="background:#BFB3A3"></span><span style="background:#8A6D3B"></span><span style="background:#241F1A"></span></div>
-        <div class="cbody">
-          <h3>A &middot; Bronze and stone</h3>
-          <p>Warm literary, muted brass accent.</p>
-          <a class="open" href="masthead/bronze/index.html">Open</a>
-          <div class="pages"><a href="masthead/bronze/authors.html">Authors</a> &middot; <a href="masthead/bronze/books.html">Books</a> &middot; <a href="masthead/bronze/about.html">About</a></div>
-        </div>
-      </div>
-      <div class="card">
-        <div class="swatches"><span style="background:#F1EEE7"></span><span style="background:#BFB3A3"></span><span style="background:#3E4C59"></span><span style="background:#23262B"></span></div>
-        <div class="cbody">
-          <h3>B &middot; Slate and stone</h3>
-          <p>Cool and calm, blue-grey accent.</p>
-          <a class="open" href="masthead/slate/index.html">Open</a>
-          <div class="pages"><a href="masthead/slate/authors.html">Authors</a> &middot; <a href="masthead/slate/books.html">Books</a> &middot; <a href="masthead/slate/about.html">About</a></div>
-        </div>
-      </div>
-      <div class="card">
-        <div class="swatches"><span style="background:#F3EDE3"></span><span style="background:#BFB3A3"></span><span style="background:#7C6F59"></span><span style="background:#23201C"></span></div>
-        <div class="cbody">
-          <h3>C &middot; Charcoal and tan</h3>
-          <p>Quietest, no color accent.</p>
-          <a class="open" href="masthead/charcoal/index.html">Open</a>
-          <div class="pages"><a href="masthead/charcoal/authors.html">Authors</a> &middot; <a href="masthead/charcoal/books.html">Books</a> &middot; <a href="masthead/charcoal/about.html">About</a></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="layout">
-    <div class="lhead">
-      <h2>Layout 2 &middot; Spine</h2>
-      <span class="badge">Option</span>
-    </div>
-    <p class="ldesc">Fixed left sidebar. A vertical spine holds the logo and nav while the content reads as a calm single column beside it. Architectural and memorable, and it frames the author content like a book spine. On mobile the spine folds into a top bar.</p>
-    <div class="cards">
-      <div class="card">
-        <div class="swatches"><span style="background:#F4EEE4"></span><span style="background:#BFB3A3"></span><span style="background:#8A6D3B"></span><span style="background:#241F1A"></span></div>
-        <div class="cbody">
-          <h3>A &middot; Bronze and stone</h3>
-          <p>Warm literary, muted brass accent.</p>
-          <a class="open" href="spine/bronze/index.html">Open</a>
-          <div class="pages"><a href="spine/bronze/authors.html">Authors</a> &middot; <a href="spine/bronze/books.html">Books</a> &middot; <a href="spine/bronze/about.html">About</a></div>
-        </div>
-      </div>
-      <div class="card">
-        <div class="swatches"><span style="background:#F1EEE7"></span><span style="background:#BFB3A3"></span><span style="background:#3E4C59"></span><span style="background:#23262B"></span></div>
-        <div class="cbody">
-          <h3>B &middot; Slate and stone</h3>
-          <p>Cool and calm, blue-grey accent.</p>
-          <a class="open" href="spine/slate/index.html">Open</a>
-          <div class="pages"><a href="spine/slate/authors.html">Authors</a> &middot; <a href="spine/slate/books.html">Books</a> &middot; <a href="spine/slate/about.html">About</a></div>
-        </div>
-      </div>
-      <div class="card">
-        <div class="swatches"><span style="background:#F3EDE3"></span><span style="background:#BFB3A3"></span><span style="background:#7C6F59"></span><span style="background:#23201C"></span></div>
-        <div class="cbody">
-          <h3>C &middot; Charcoal and tan</h3>
-          <p>Quietest, no color accent.</p>
-          <a class="open" href="spine/charcoal/index.html">Open</a>
-          <div class="pages"><a href="spine/charcoal/authors.html">Authors</a> &middot; <a href="spine/charcoal/books.html">Books</a> &middot; <a href="spine/charcoal/about.html">About</a></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
 </main>
 
-<footer class="wrap">Division 26 design review. Internal preview, not indexed. Round 1: two layouts, three palettes. Round 2: Slate and stone, four type studies.</footer>
+<footer class="wrap">Division 26 design review. Internal preview, not indexed. Slate and stone, four type studies, two layouts.</footer>
 </body>
 </html>
