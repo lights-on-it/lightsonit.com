@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "lightsonit",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "5179", "--directory", "D:/Websites/lightsonit.com"],
+      "port": 5179
+    },
+    {
+      "name": "gregg",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "8031", "--directory", "D:/Websites/greggowen26th.com/docs"],
+      "port": 8031
+    }
+  ]
+}

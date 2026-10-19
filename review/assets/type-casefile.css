@@ -1,0 +1,42 @@
+:root{
+  --serif:"Oswald",Impact,"Arial Narrow",sans-serif;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --cond:"Oswald","Arial Narrow",sans-serif;
+  --label:var(--mono);
+  --numeral:var(--mono);
+  --mono:"Courier Prime",ui-monospace,monospace;
+  --quote:"Lora",Georgia,serif;
+}
+h1,h2,h3{font-weight:600;text-transform:uppercase;letter-spacing:.01em;line-height:1}
+h1{font-size:clamp(2.6rem,5.8vw,4.2rem);line-height:.98}
+.shell h1{font-size:clamp(2.4rem,3.8vw,3.3rem)}
+h2{font-size:clamp(1.8rem,3.6vw,2.6rem)}
+.shell h2{font-size:clamp(1.6rem,2.6vw,2.1rem)}
+h3{font-weight:500;font-size:1.3rem;letter-spacing:.03em}
+.eyebrow,.callout .tag{display:flex;align-items:center;gap:12px;font-family:var(--mono);font-weight:400;font-size:.74rem;letter-spacing:.26em}
+.eyebrow::before,.callout .tag::before{content:"";flex:none;width:28px;height:2px;background:currentColor}
+.lede{font-size:1.16rem}
+.mainnav a,.snav a,.navjoin,.btn,.spine-toggle,.menu-toggle{font-weight:500;letter-spacing:.14em;border-radius:0}
+.mainnav a{font-size:.84rem}
+.snav a{font-size:.94rem}
+.btn{font-size:.88rem;padding:13px 24px}
+.brand .bt,.sbrand .bt{font-weight:700;text-transform:uppercase;letter-spacing:.06em}
+.brand .bt{font-size:1.4rem}
+.brand .bt small,.sbrand .bt small{font-family:var(--mono);font-weight:400;letter-spacing:.2em;font-size:.6rem}
+.lead .by,.acard .role,.cover .cby,blockquote cite,.foot h4,.foot .base,.values .num{font-family:var(--mono);font-weight:400;letter-spacing:.18em}
+.lead .by{font-size:.8rem}
+.acard{border-left-width:3px}
+.acard .role{font-size:.72rem}
+.acard .more{font-weight:500;letter-spacing:.14em;border-bottom:1px solid currentColor;padding-bottom:1px}
+.cover .ct{text-transform:uppercase;font-weight:600;font-size:1.75rem;line-height:1}
+blockquote,.spine-foot p{font-family:var(--quote);font-weight:500}
+blockquote{border-left-color:var(--accent)}
+.values .num{font-size:.9rem;color:var(--accent)}
+.rule{height:2px;width:56px;background:var(--accent)}
+.foot .base{font-size:.72rem}
+.foot .brandline strong{font-family:var(--serif);font-weight:600;text-transform:uppercase;letter-spacing:.06em;font-size:1.1rem}
+.sbrand .bt small{font-size:.56rem;letter-spacing:.1em}
+[style*="--label"]{font-size:.82rem}
+@media(max-width:720px){
+  .eyebrow{letter-spacing:.16em}
+}

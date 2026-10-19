@@ -1,0 +1,49 @@
+:root{
+  --paper:#1E2227;
+  --panel:#262B31;
+  --deep:#15181C;
+  --ink:#ECE7DD;
+  --muted:#A8A196;
+  --tan:#BFB3A3;
+  --hair:#353B42;
+  --accent:#A3B5C6;
+  --btn-bg:#E6DFD3;
+  --btn-fg:#1E2227;
+  --author-1:#C0302A;
+  --author-2:#6F8798;
+  --author-3:#7F9455;
+  --serif:"Lora",Georgia,"Times New Roman",serif;
+  --sans:"Libre Franklin",system-ui,-apple-system,Segoe UI,Arial,sans-serif;
+  --cond:"Oswald","Arial Narrow",sans-serif;
+  --label:var(--mono);
+  --numeral:var(--mono);
+  --mono:"Courier Prime",ui-monospace,monospace;
+}
+h1,h2,h3{font-weight:600;letter-spacing:-.01em}
+h1{font-size:clamp(2.4rem,5.2vw,3.8rem);line-height:1.08}
+.shell h1{font-size:clamp(2.2rem,3.4vw,2.9rem)}
+h3{font-size:1.25rem}
+.eyebrow,.callout .tag{color:var(--tan);font-weight:400;letter-spacing:.24em}
+.mainnav a,.snav a,.navjoin,.btn,.spine-toggle,.menu-toggle{font-weight:400;letter-spacing:.14em;border-radius:0}
+.mainnav a{font-size:.86rem}
+.snav a{font-size:.96rem}
+.btn-ghost{color:var(--ink)}
+.btn-ghost:hover{background:var(--tan);color:var(--deep)}
+.brand .bt,.sbrand .bt{font-weight:700;letter-spacing:-.01em;color:var(--ink)}
+.brand .bt small,.sbrand .bt small{font-family:var(--mono);font-weight:400;letter-spacing:.18em}
+.lead .by,.acard .role,.cover .cby,blockquote cite,.foot h4,.foot .base,.values .num{font-family:var(--mono);font-weight:400;letter-spacing:.16em}
+.acard{border-left-width:3px}
+.acard .more{font-weight:400;letter-spacing:.14em}
+.cover{background:#0F1215;color:var(--ink);border-color:var(--hair)}
+.cover .ct{font-weight:600;font-size:1.65rem}
+blockquote{font-weight:500;border-left-color:var(--author-1)}
+.values .num{color:var(--tan);font-size:.9rem}
+.rule{height:2px;background:var(--tan)}
+.strip,.foot,.spine{background:var(--deep);color:var(--ink)}
+.strip h2,.strip .btn-ghost,.spine-toggle{color:var(--ink)}
+.foot .brandline strong{font-family:var(--serif);font-size:1.12rem}
+@media(max-width:900px){
+  .snav{background:var(--deep)}
+}
+.sbrand .bt small{font-size:.56rem;letter-spacing:.1em}
+[style*="--label"]{font-size:.82rem}

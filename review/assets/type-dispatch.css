@@ -1,0 +1,40 @@
+:root{
+  --serif:"Newsreader",Georgia,"Times New Roman",serif;
+  --sans:"Newsreader",Georgia,"Times New Roman",serif;
+  --cond:"Oswald","Arial Narrow",sans-serif;
+  --label:var(--mono);
+  --numeral:var(--mono);
+  --mono:"Courier Prime",ui-monospace,monospace;
+}
+body{font-size:18.5px;line-height:1.6}
+h1,h2,h3{font-weight:600;letter-spacing:-.02em;line-height:1.02}
+h1{font-size:clamp(2.7rem,6vw,4.5rem)}
+.shell h1{font-size:clamp(2.4rem,3.8vw,3.4rem)}
+h2{font-size:clamp(1.8rem,3.6vw,2.6rem)}
+.shell h2{font-size:clamp(1.6rem,2.6vw,2.1rem)}
+h3{font-size:1.4rem;letter-spacing:-.01em}
+.lede,.shell .lede{font-style:italic;font-size:clamp(1.18rem,1.7vw,1.34rem);line-height:1.45}
+.eyebrow,.callout .tag{display:inline-block;font-family:var(--mono);font-weight:700;font-size:.74rem;letter-spacing:.16em;border-top:2px solid var(--ink);padding-top:.5rem}
+.topbar{border-bottom:4px double var(--ink)}
+.hero,.pagehead,.shero{border-bottom-color:var(--ink)}
+.section-head{border-top:1px solid var(--ink);padding-top:1.4rem}
+.mainnav a,.snav a,.navjoin,.btn,.spine-toggle,.menu-toggle{font-weight:500;letter-spacing:.12em;border-radius:0}
+.mainnav a{font-size:.84rem}
+.snav a{font-size:.94rem}
+.brand .bt,.sbrand .bt{font-weight:700;letter-spacing:-.02em}
+.brand .bt{font-size:1.55rem}
+.sbrand .bt{font-size:1.32rem}
+.brand .bt small,.sbrand .bt small{font-family:var(--mono);font-weight:400;letter-spacing:.16em}
+.lead .by,.acard .role,.cover .cby,blockquote cite,.foot h4,.foot .base,.values .num{font-family:var(--mono);font-weight:400;letter-spacing:.14em}
+.lead .by{font-size:.82rem}
+.acard{border-left-width:3px}
+.acard .more{font-weight:500;letter-spacing:.12em}
+.cover .ct{font-weight:600;font-size:1.7rem;letter-spacing:-.02em}
+blockquote{border-left:0;padding:1rem 0 0;border-top:1px solid var(--ink);font-size:1.55rem;font-weight:500;line-height:1.35}
+blockquote::before{content:"\201C";display:block;font-size:3.4rem;line-height:.62;color:var(--accent)}
+.spine-foot p{font-weight:500}
+.values .num{font-size:.85rem;color:var(--accent);border-top:2px solid var(--ink);padding-top:.5rem;display:inline-block}
+.prose p:first-of-type::first-letter{float:left;font-size:4.2em;line-height:.8;font-weight:600;padding:.05em .1em 0 0;color:var(--accent)}
+.foot .brandline strong{font-family:var(--serif);font-size:1.25rem;letter-spacing:-.02em}
+.sbrand .bt small{font-size:.56rem;letter-spacing:.1em}
+[style*="--label"]{font-size:.82rem}

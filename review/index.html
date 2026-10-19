@@ -7,7 +7,7 @@
 <title>Division 26 | Design Review</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bitter:wght@600;700;800&family=Libre+Franklin:wght@400;500;600&family=Barlow+Condensed:wght@500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bitter:wght@600;700;800&family=Libre+Franklin:wght@400;500;600&family=Barlow+Condensed:wght@500;600&family=Source+Serif+4:opsz,wght@8..60,600&family=Oswald:wght@400;600&family=Newsreader:opsz,wght@6..72,600&family=Lora:wght@600&family=Courier+Prime&display=swap" rel="stylesheet">
 <style>
 :root{--paper:#F3EDE3;--ink:#23201C;--muted:#6F6558;--tan:#BFB3A3;--hair:#DCD2C2;--panel:#EAE1D3}
 *{box-sizing:border-box}
@@ -25,16 +25,31 @@ h1{font-family:"Bitter",Georgia,serif;font-size:1.9rem;margin:0}
 .badge{font-family:"Barlow Condensed",sans-serif;text-transform:uppercase;letter-spacing:.12em;font-size:.7rem;padding:4px 10px;border-radius:2px;background:#586B39;color:#fff}
 .ldesc{color:var(--muted);max-width:68ch;margin:0 0 22px}
 .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px}
+.cards.four{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
 .card{border:1px solid var(--hair);background:#fff;border-radius:4px;overflow:hidden;display:flex;flex-direction:column}
 .swatches{display:flex;height:70px}
 .swatches span{flex:1}
 .cbody{padding:16px 18px}
 .cbody h3{font-family:"Bitter",serif;font-size:1.05rem;margin:0 0 2px}
 .cbody p{font-size:.85rem;color:var(--muted);margin:0 0 14px}
-.open{display:inline-block;font-family:"Barlow Condensed",sans-serif;text-transform:uppercase;letter-spacing:.1em;font-weight:600;font-size:.82rem;padding:9px 16px;background:var(--ink);color:var(--paper);border-radius:2px}
+.open{display:inline-block;text-decoration:none;font-family:"Barlow Condensed",sans-serif;text-transform:uppercase;letter-spacing:.1em;font-weight:600;font-size:.82rem;padding:9px 16px;background:var(--ink);color:var(--paper);border-radius:2px}
 .pages{margin-top:10px;font-size:.78rem;color:var(--muted)}
 .pages a{color:var(--muted)}
 .pages a:hover{color:var(--ink)}
+.badge.new{background:#3E4C59}
+.ref{font-size:.88rem;color:var(--muted);margin:-8px 0 22px}
+.ref a{color:var(--ink);border-bottom:1px solid var(--tan)}
+.spec{height:118px;padding:16px 18px;display:flex;flex-direction:column;justify-content:flex-end;background:#F1EEE7;color:#23262B;border-bottom:1px solid var(--hair)}
+.spec b{font-weight:600;font-size:2rem;line-height:1}
+.spec i{font-style:normal;font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;color:#3E4C59;margin-bottom:8px}
+.spec.dark{background:#1E2227;color:#ECE7DD}
+.spec.dark i{color:#BFB3A3}
+.fonts{font-size:.78rem;color:var(--muted);margin:-6px 0 6px}
+.shares{font-size:.78rem;margin:0 0 14px}
+.shares span{display:inline-block;padding:1px 7px;margin:2px 4px 2px 0;border:1px solid var(--tan);border-radius:2px;color:var(--ink)}
+.opens{display:flex;gap:8px;flex-wrap:wrap}
+.open.alt{background:none;color:var(--ink);border:1px solid var(--ink);padding:8px 15px}
+.round{font-family:"Barlow Condensed",sans-serif;text-transform:uppercase;letter-spacing:.18em;font-size:.78rem;color:var(--muted);padding:44px 0 0;margin:0}
 footer{padding:34px 0;color:var(--muted);font-size:.85rem}
 </style>
 </head>
@@ -48,11 +63,64 @@ footer{padding:34px 0;color:var(--muted);font-size:.85rem}
         <div class="sub">Design review</div>
       </div>
     </div>
-    <p class="intro">Two layouts, each in three neutral palettes. The publisher stays quiet so the author, and the author's color, stand out. Open any option to click through the full site. Every version has the same content, so you are comparing layout and color directly. For a fair look, view at 100 percent browser zoom.</p>
+    <p class="intro">Round 2 keeps the Slate and stone colors you picked and tries four different typefaces and styles, each in both layouts. Round 1, with the original layouts and palettes, is further down. Every version has the same content, so you are comparing type and style directly. For a fair look, view at 100 percent browser zoom.</p>
   </div>
 </header>
 
 <main class="wrap">
+
+  <section class="layout">
+    <div class="lhead">
+      <h2>Round 2 &middot; Slate and stone type studies</h2>
+      <span class="badge new">New</span>
+    </div>
+    <p class="ldesc">Each study borrows from the type on Gregg's own site (tall Oswald capitals, Lora italic, Courier Prime case labels), so Division 26 and its authors read as one family. The imprint stays a step quieter and lighter than the author sites, and slate stays its color, while red stays Gregg's.</p>
+    <p class="ref">Compare side by side with <a href="https://greggowen26th.com" target="_blank" rel="noopener">GreggOwen26th.com</a>.</p>
+    <div class="cards four">
+      <div class="card">
+        <div class="spec"><i style="font-family:'Oswald',sans-serif">Independent imprint</i><b style="font-family:'Source Serif 4',serif">One roof.</b></div>
+        <div class="cbody">
+          <h3>1 &middot; Imprint</h3>
+          <p>Classic literary publisher. Closest to Round 1, with Gregg's type working in the details: labels, quotes, numerals.</p>
+          <p class="fonts">Source Serif headlines, Oswald labels, Lora italic quotes</p>
+          <p class="shares">Shared with Gregg: <span>Oswald</span><span>Lora</span></p>
+          <div class="opens"><a class="open" href="masthead/slate-imprint/index.html">Masthead</a><a class="open alt" href="spine/slate-imprint/index.html">Spine</a></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="spec"><i style="font-family:'Courier Prime',monospace">Independent imprint</i><b style="font-family:'Oswald',sans-serif;text-transform:uppercase">One roof.</b></div>
+        <div class="cbody">
+          <h3>2 &middot; Case File</h3>
+          <p>Gregg's type system in daylight. Capital headlines and typewriter labels. The strongest family resemblance.</p>
+          <p class="fonts">Oswald capitals, Courier Prime labels, Lora italic quotes</p>
+          <p class="shares">Shared with Gregg: <span>Oswald</span><span>Lora</span><span>Courier Prime</span></p>
+          <div class="opens"><a class="open" href="masthead/slate-casefile/index.html">Masthead</a><a class="open alt" href="spine/slate-casefile/index.html">Spine</a></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="spec"><i style="font-family:'Courier Prime',monospace;font-weight:700">Independent imprint</i><b style="font-family:'Newsreader',serif;letter-spacing:-.02em">One roof.</b></div>
+        <div class="cbody">
+          <h3>3 &middot; Dispatch</h3>
+          <p>Newsroom editorial. A serif throughout, italic summaries, typewriter datelines, newspaper rules, and a drop cap.</p>
+          <p class="fonts">Newsreader headlines and text, Courier Prime datelines, Oswald nav</p>
+          <p class="shares">Shared with Gregg: <span>Oswald</span><span>Courier Prime</span></p>
+          <div class="opens"><a class="open" href="masthead/slate-dispatch/index.html">Masthead</a><a class="open alt" href="spine/slate-dispatch/index.html">Spine</a></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="spec dark"><i style="font-family:'Oswald',sans-serif">Independent imprint</i><b style="font-family:'Lora',serif">One roof.</b></div>
+        <div class="cbody">
+          <h3>4 &middot; Night Desk</h3>
+          <p>Slate and stone after dark, closest to the dark ground of Gregg's site. Same colors, flipped to a deep slate.</p>
+          <p class="fonts">Lora headlines, Oswald nav, Courier Prime labels</p>
+          <p class="shares">Shared with Gregg: <span>Oswald</span><span>Lora</span><span>Courier Prime</span><span>Dark ground</span></p>
+          <div class="opens"><a class="open" href="masthead/slate-night/index.html">Masthead</a><a class="open alt" href="spine/slate-night/index.html">Spine</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <p class="round">Round 1 &middot; Layouts and palettes</p>
 
   <section class="layout">
     <div class="lhead">
@@ -130,6 +198,6 @@ footer{padding:34px 0;color:var(--muted);font-size:.85rem}
 
 </main>
 
-<footer class="wrap">Division 26 design review. Internal preview, not indexed. Two layouts, three palettes.</footer>
+<footer class="wrap">Division 26 design review. Internal preview, not indexed. Round 1: two layouts, three palettes. Round 2: Slate and stone, four type studies.</footer>
 </body>
 </html>

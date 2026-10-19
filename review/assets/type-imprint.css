@@ -1,0 +1,27 @@
+:root{
+  --serif:"Source Serif 4",Georgia,"Times New Roman",serif;
+  --sans:"Libre Franklin",system-ui,-apple-system,Segoe UI,Arial,sans-serif;
+  --cond:"Oswald","Arial Narrow",sans-serif;
+  --quote:"Lora",Georgia,serif;
+}
+h1,h2,h3{font-weight:600;letter-spacing:-.015em}
+h1{font-size:clamp(2.4rem,5.2vw,3.7rem);line-height:1.06}
+.shell h1{font-size:clamp(2.2rem,3.4vw,2.9rem)}
+h3{font-size:1.25rem;letter-spacing:-.005em}
+.eyebrow,.callout .tag{font-weight:400;letter-spacing:.24em;font-size:.76rem}
+.mainnav a,.snav a,.navjoin,.btn,.spine-toggle,.menu-toggle{font-weight:400;letter-spacing:.14em}
+.mainnav a{font-size:.86rem}
+.snav a{font-size:.96rem}
+.btn{font-size:.9rem;border-radius:1px}
+.brand .bt,.sbrand .bt{font-weight:700;letter-spacing:-.01em}
+.brand .bt{font-size:1.38rem}
+.brand .bt small,.sbrand .bt small{font-weight:400;letter-spacing:.2em}
+.lead .by,.acard .role,.cover .cby,blockquote cite,.foot h4,.foot .base{font-weight:400;letter-spacing:.16em}
+.acard .more{font-weight:400;letter-spacing:.14em}
+.acard{border-left-width:3px}
+.cover .ct{font-style:italic;font-weight:600;font-size:1.65rem;letter-spacing:-.01em}
+blockquote,.spine-foot p{font-family:var(--quote);font-weight:500}
+blockquote{font-size:1.4rem;line-height:1.45}
+.values .num{font-family:var(--quote);font-style:italic;font-weight:500;font-size:1.5rem}
+.rule{height:1px;width:64px;background:var(--accent)}
+.foot .brandline strong{font-family:var(--serif);font-size:1.15rem;letter-spacing:-.01em}
