@@ -1,0 +1,20 @@
+body{padding-bottom:76px}
+mark.needed{background:none;color:inherit;padding:0;border-radius:2px}
+.show-needed mark.needed{background:#FFE14D;color:#1E2227;padding:0 .08em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.show-needed .needed-field{outline:3px solid #FFE14D;outline-offset:1px}
+mark.needed.is-current,.needed-field.is-current{outline:3px solid #E8590C;outline-offset:2px}
+.show-needed mark.needed.is-current{background:#FFB347}
+.needbar{position:fixed;right:16px;bottom:16px;z-index:100;display:flex;align-items:center;gap:6px;padding:6px;background:#23262B;color:#F1EEE7;border-radius:6px;box-shadow:0 8px 24px rgba(0,0,0,.28);font-family:"Courier Prime",ui-monospace,monospace;font-size:.78rem;line-height:1}
+.needbar button{font:inherit;color:inherit;background:transparent;border:1px solid rgba(255,255,255,.24);border-radius:4px;min-height:36px;padding:0 11px;cursor:pointer;white-space:nowrap}
+.needbar button:hover{background:rgba(255,255,255,.1)}
+.needbar button:focus-visible{outline:2px solid #FFE14D;outline-offset:2px}
+.nb-toggle{display:flex;align-items:center;gap:8px;text-transform:uppercase;letter-spacing:.12em}
+.nb-dot{width:12px;height:12px;border-radius:2px;background:#FFE14D;border:1px solid rgba(255,255,255,.45)}
+.nb-toggle[aria-pressed="false"] .nb-dot{background:transparent}
+.nb-count{min-width:5.2em;text-align:center}
+@media(max-width:560px){
+  .needbar{left:12px;right:12px;bottom:12px;justify-content:space-between}
+}
+@media print{
+  .needbar{display:none}
+}
