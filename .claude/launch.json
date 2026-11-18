@@ -8,6 +8,12 @@
       "port": 5179
     },
     {
+      "name": "d26-precopy",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "5180", "--directory", "C:/Users/norm1/AppData/Local/Temp/claude/74f3a3330869fa71/bb5c6a31-fd5c-4b51-91bb-0e4cfb6fef9a/scratchpad/precopy"],
+      "port": 5180
+    },
+    {
       "name": "gregg",
       "runtimeExecutable": "python",
       "runtimeArgs": ["-m", "http.server", "8031", "--directory", "D:/Websites/greggowen26th.com/docs"],

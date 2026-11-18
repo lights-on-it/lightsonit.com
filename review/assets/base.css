@@ -106,7 +106,7 @@ blockquote cite{display:block;font-family:var(--cond);font-style:normal;text-tra
 .foot{background:var(--ink);color:var(--paper)}
 .foot a{color:var(--tan)}
 .foot a:hover{color:var(--paper)}
-.foot .cols{display:grid;grid-template-columns:2fr 1fr;gap:28px;padding:56px 0 40px}
+.foot .cols{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:28px;padding:56px 0 40px}
 .foot .cols p{color:#bdb3a3;opacity:.85;font-size:.95rem}
 .foot h4{font-family:var(--cond);text-transform:uppercase;letter-spacing:.12em;font-size:.82rem;color:var(--tan);margin:0 0 .9rem}
 .foot .col a{display:block;margin-bottom:.5rem;color:#e7ddcc}
@@ -145,3 +145,4 @@ blockquote cite{display:block;font-family:var(--cond);font-style:normal;text-tra
   .book,.bio{grid-template-columns:1fr;gap:28px}
   .book>.art{position:static;max-width:260px}
 }
+.callout .cover-img{max-width:100%;box-shadow:none}
