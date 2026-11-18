@@ -106,7 +106,7 @@ blockquote cite{display:block;font-family:var(--cond);font-style:normal;text-tra
 .foot{background:var(--ink);color:var(--paper)}
 .foot a{color:var(--tan)}
 .foot a:hover{color:var(--paper)}
-.foot .cols{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:28px;padding:56px 0 40px}
+.foot .cols{display:grid;grid-template-columns:2fr 1fr;gap:28px;padding:56px 0 40px}
 .foot .cols p{color:#bdb3a3;opacity:.85;font-size:.95rem}
 .foot h4{font-family:var(--cond);text-transform:uppercase;letter-spacing:.12em;font-size:.82rem;color:var(--tan);margin:0 0 .9rem}
 .foot .col a{display:block;margin-bottom:.5rem;color:#e7ddcc}
@@ -118,4 +118,30 @@ blockquote cite{display:block;font-family:var(--cond);font-style:normal;text-tra
   .section{padding:52px 0}
   .foot .cols{grid-template-columns:1fr 1fr;gap:24px}
   .strip .wrap{flex-direction:column;align-items:flex-start}
+}
+.by{font-family:var(--label,var(--cond));text-transform:uppercase;letter-spacing:.14em;font-size:.82rem;color:var(--muted);margin:-.2rem 0 1.4rem}
+.nameplate{font-size:clamp(3.2rem,9vw,6.4rem);line-height:.95;margin-bottom:1.4rem}
+.cover-img{width:100%;max-width:340px;height:auto;border:1px solid var(--hair);box-shadow:0 14px 30px rgba(35,38,43,.18)}
+.lead .art{display:flex;justify-content:center}
+.book{display:grid;grid-template-columns:300px 1fr;gap:56px;align-items:start}
+.book>.art{position:sticky;top:104px}
+.book .cover{aspect-ratio:2/3}
+.book h3{margin:2.2rem 0 .8rem}
+.book blockquote,.praise blockquote{font-size:1.25rem;margin:0 0 1.8rem}
+.formats{display:grid;gap:16px;margin-top:2.4rem;border-top:1px solid var(--hair);padding-top:1.4rem}
+.fmt-label{display:block;font-family:var(--label,var(--cond));text-transform:uppercase;letter-spacing:.14em;font-size:.76rem;color:var(--muted);margin-bottom:.3rem}
+.fmt-links{display:flex;flex-wrap:wrap;gap:6px 20px}
+.fmt-links a{border-bottom:1px solid var(--tan)}
+.fmt-links a:hover{border-bottom-color:var(--accent);color:var(--accent)}
+.bio{display:grid;grid-template-columns:280px 1fr;gap:48px;align-items:start}
+.bio h2{font-size:clamp(1.6rem,2.6vw,2rem)}
+.praise h3{margin:2.2rem 0 1rem}
+.mast{margin:0}
+.mast dt{font-family:var(--label,var(--cond));text-transform:uppercase;letter-spacing:.14em;font-size:.78rem;color:var(--muted);margin-top:1.2rem}
+.mast dd{margin:.2rem 0 0;font-size:1.15rem}
+.prose a{border-bottom:1px solid var(--tan)}
+.authors-grid.two{grid-template-columns:repeat(auto-fit,minmax(240px,1fr));max-width:720px}
+@media(max-width:860px){
+  .book,.bio{grid-template-columns:1fr;gap:28px}
+  .book>.art{position:static;max-width:260px}
 }

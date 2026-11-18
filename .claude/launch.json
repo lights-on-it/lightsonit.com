@@ -12,6 +12,36 @@
       "runtimeExecutable": "python",
       "runtimeArgs": ["-m", "http.server", "8031", "--directory", "D:/Websites/greggowen26th.com/docs"],
       "port": 8031
+    },
+    {
+      "name": "members-site",
+      "runtimeExecutable": "C:\\Users\\norm1\\AppData\\Roaming\\npm\\pnpm.cmd",
+      "runtimeArgs": ["-C", "D:\\Websites\\greggowen26th.com\\apps\\site", "dev", "--port", "4321"],
+      "port": 4321
+    },
+    {
+      "name": "members-media",
+      "runtimeExecutable": "C:\\Users\\norm1\\AppData\\Roaming\\npm\\pnpm.cmd",
+      "runtimeArgs": ["-C", "D:\\Websites\\greggowen26th.com\\workers\\media", "dev"],
+      "port": 8787
+    },
+    {
+      "name": "members-site-build",
+      "runtimeExecutable": "C:\\Users\\norm1\\AppData\\Roaming\\npm\\pnpm.cmd",
+      "runtimeArgs": ["-C", "D:\\Websites\\greggowen26th.com\\apps\\site", "exec", "astro", "preview", "--port", "4323"],
+      "port": 4323
+    },
+    {
+      "name": "members-admin",
+      "runtimeExecutable": "C:\\Users\\norm1\\AppData\\Roaming\\npm\\pnpm.cmd",
+      "runtimeArgs": ["-C", "D:\\Websites\\greggowen26th.com\\apps\\admin", "dev", "--port", "4322"],
+      "port": 4322
+    },
+    {
+      "name": "members-admin-build",
+      "runtimeExecutable": "C:\\Users\\norm1\\AppData\\Roaming\\npm\\pnpm.cmd",
+      "runtimeArgs": ["-C", "D:\\Websites\\greggowen26th.com\\apps\\admin", "exec", "astro", "preview", "--port", "4324"],
+      "port": 4324
     }
   ]
 }
