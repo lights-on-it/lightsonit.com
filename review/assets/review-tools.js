@@ -10,6 +10,7 @@
   var walk=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,{acceptNode:function(n){
     var tag=n.parentNode.nodeName;
     if(tag==='SCRIPT'||tag==='STYLE'||tag==='TEXTAREA')return NodeFilter.FILTER_REJECT;
+    if(tag==='MARK'&&n.parentNode.classList.contains('needed'))return NodeFilter.FILTER_REJECT;
     return has.test(n.nodeValue)?NodeFilter.FILTER_ACCEPT:NodeFilter.FILTER_SKIP;
   }});
   while(walk.nextNode())nodes.push(walk.currentNode);
@@ -32,18 +33,22 @@
   });
 
   var all=[].slice.call(document.querySelectorAll('mark.needed,.needed-field'));
+  all.forEach(function(el){
+    var id=el.getAttribute('data-need');
+    if(id)el.setAttribute('title','Copy sheet: '+id);
+  });
   var cur=-1;
 
   var bar=document.createElement('div');
   bar.className='needbar';
   bar.setAttribute('role','region');
   bar.setAttribute('aria-label','Needed copy');
-  bar.innerHTML='<button type="button" class="nb-toggle" aria-pressed="true" title="Highlight needed copy"><span class="nb-dot"></span>Needed copy</button>'+
+  bar.innerHTML='<button type="button" class="nb-toggle" aria-pressed="true" title="Highlight needed copy"><span class="nb-dot"></span><span class="nb-label">Needed copy</span></button>'+
     '<button type="button" class="nb-prev" aria-label="Previous needed copy" title="Previous ( [ key )">&lsaquo;</button>'+
-    '<span class="nb-count" aria-live="polite"></span>'+
+    '<span class="nb-count" aria-live="polite"><b class="nb-id"></b><small class="nb-pos"></small></span>'+
     '<button type="button" class="nb-next" aria-label="Next needed copy" title="Next ( ] key )">&rsaquo;</button>';
   document.body.appendChild(bar);
-  var tog=bar.querySelector('.nb-toggle'),prev=bar.querySelector('.nb-prev'),next=bar.querySelector('.nb-next'),count=bar.querySelector('.nb-count');
+  var tog=bar.querySelector('.nb-toggle'),prev=bar.querySelector('.nb-prev'),next=bar.querySelector('.nb-next'),idEl=bar.querySelector('.nb-id'),posEl=bar.querySelector('.nb-pos');
 
   function visible(){return all.filter(function(el){return el.getClientRects().length>0})}
 
@@ -55,7 +60,9 @@
 
   function label(){
     var v=visible();
-    count.textContent=(cur<0?'–':cur+1)+' / '+v.length;
+    var el=cur<0?null:v[cur];
+    idEl.textContent=el?(el.getAttribute('data-need')||'Not on sheet'):'Copy sheet';
+    posEl.textContent=(cur<0?'–':cur+1)+' of '+v.length+' on this page';
     var atEnd=cur>=v.length-1,atStart=cur<=0;
     next.innerHTML=atEnd?'Next page &rsaquo;':'&rsaquo;';
     prev.innerHTML=atStart&&cur>-1?'&lsaquo; Prev page':'&lsaquo;';

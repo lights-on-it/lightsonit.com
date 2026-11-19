@@ -11,9 +11,14 @@ mark.needed.is-current,.needed-field.is-current{outline:3px solid #E8590C;outlin
 .nb-toggle{display:flex;align-items:center;gap:8px;text-transform:uppercase;letter-spacing:.12em}
 .nb-dot{width:12px;height:12px;border-radius:2px;background:#FFE14D;border:1px solid rgba(255,255,255,.45)}
 .nb-toggle[aria-pressed="false"] .nb-dot{background:transparent}
-.nb-count{min-width:5.2em;text-align:center}
+.nb-count{display:flex;flex-direction:column;align-items:center;gap:3px;min-width:10.5em;padding:0 4px;text-align:center}
+.nb-id{font-weight:700;font-size:.86rem;color:#FFE14D;letter-spacing:.04em}
+.nb-pos{font-size:.66rem;opacity:.75}
+.show-needed mark.needed[data-need]::after{content:attr(data-need);display:inline-block;margin-left:4px;padding:2px 4px;border-radius:2px;background:#23262B;color:#FFE14D;font:700 10px/1 "Courier Prime",ui-monospace,monospace;letter-spacing:0;text-transform:none;font-style:normal;vertical-align:.35em;white-space:nowrap}
 @media(max-width:560px){
   .needbar{left:12px;right:12px;bottom:12px;justify-content:space-between}
+  .nb-label{display:none}
+  .nb-count{min-width:0}
 }
 @media print{
   .needbar{display:none}
