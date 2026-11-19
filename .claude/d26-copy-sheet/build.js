@@ -3,7 +3,7 @@ const path = require("path");
 const {
   Document, Packer, Paragraph, TextRun, Table, TableRow, TableCell, WidthType, ShadingType,
   BorderStyle, HeadingLevel, ExternalHyperlink, LevelFormat, AlignmentType, Footer, PageNumber,
-  HeightRule, TableLayoutType,
+  HeightRule, TableLayoutType, CheckBox, VerticalAlign,
 } = require("docx");
 
 const [, , itemsPath, outPath] = process.argv;
@@ -12,7 +12,7 @@ const total = sections.reduce((n, s) => n + s.rows.length, 0);
 
 const FONT = "Arial";
 const INK = "23262B", MUTED = "66625B", SLATE = "3E4C59", HAIR = "DAD2C4", FILL = "FFF8D6", ID_BG = "F1EEE7";
-const COLS = [1300, 2000, 3080, 3700];
+const COLS = [1150, 1800, 2900, 1000, 3230];
 const W = COLS.reduce((a, b) => a + b, 0);
 const SITE = "https://lightsonit.com/review/";
 
@@ -24,19 +24,19 @@ function p(text, opts = {}) {
   return new Paragraph({ spacing: { after: opts.after ?? 120 }, ...opts.para, children: [new TextRun({ text, font: FONT, size: opts.size ?? 21, color: opts.color ?? INK, bold: opts.bold, italics: opts.italics })] });
 }
 
-function cell(children, width, shade) {
+function cell(children, width, shade, valign) {
   return new TableCell({
-    width: { size: width, type: WidthType.DXA }, borders, margins: pad,
+    width: { size: width, type: WidthType.DXA }, borders, margins: pad, verticalAlign: valign,
     shading: shade ? { fill: shade, type: ShadingType.CLEAR, color: "auto" } : undefined,
     children,
   });
 }
 
 function headerRow() {
-  const labels = ["Number", "What it is", "Stand-in now", "Your copy"];
+  const labels = ["Number", "What it is", "Stand-in now", "Approve as-is", "Your copy"];
   return new TableRow({
     tableHeader: true, cantSplit: true,
-    children: labels.map((t, i) => cell([new Paragraph({ children: [new TextRun({ text: t, font: FONT, size: 18, bold: true, color: "FFFFFF" })] })], COLS[i], SLATE)),
+    children: labels.map((t, i) => cell([new Paragraph({ alignment: i === 3 ? AlignmentType.CENTER : AlignmentType.LEFT, children: [new TextRun({ text: t, font: FONT, size: 18, bold: true, color: "FFFFFF" })] })], COLS[i], SLATE)),
   });
 }
 
@@ -44,6 +44,13 @@ function lengthNote(r) {
   if (r.what.startsWith("Note for reviewers")) return "Leave blank, or write Cut.";
   if (r.words <= 3) return "A few words";
   return `About ${r.words} words`;
+}
+
+function approve(r) {
+  if (r.what.startsWith("Note for reviewers")) {
+    return new Paragraph({ alignment: AlignmentType.CENTER, children: [new TextRun({ text: "Not needed", font: FONT, size: 16, color: MUTED })] });
+  }
+  return new Paragraph({ alignment: AlignmentType.CENTER, children: [new CheckBox({ checked: false, checkedState: { value: "2612", font: "MS Gothic" }, uncheckedState: { value: "2610", font: "MS Gothic" } })] });
 }
 
 function row(r) {
@@ -58,7 +65,8 @@ function row(r) {
         new Paragraph({ spacing: { after: 80 }, children: [new TextRun({ text: r.now, font: FONT, size: 19, italics: true, color: MUTED })] }),
         new Paragraph({ children: [new TextRun({ text: lengthNote(r), font: FONT, size: 16, color: MUTED })] }),
       ], COLS[2]),
-      cell([new Paragraph({ children: [new TextRun({ text: "", font: FONT, size: 21 })] })], COLS[3], FILL),
+      cell([approve(r)], COLS[3], undefined, VerticalAlign.CENTER),
+      cell([new Paragraph({ children: [new TextRun({ text: "", font: FONT, size: 21 })] })], COLS[4], FILL),
     ],
   });
 }
@@ -70,8 +78,9 @@ function link(text, url) {
 const steps = [
   ["Open the review site at ", link("lightsonit.com/review", SITE), ". Every piece of text we still need from you is highlighted in yellow and tagged with a number, such as Home 3."],
   ["Use the Needed copy bar in the bottom right corner of each page to step through the highlights, or press ] for the next one and [ for the previous one. The bar shows the number of the highlight you are on."],
-  ["Find that number below and write your version in the Your copy column. The Stand-in now column shows the text that is there today and roughly how much space the design was built for. Longer or shorter is fine."],
-  ["To remove an item from the site, write Cut. To come back to it later, leave the box empty."],
+  ["Find that number below. If the stand-in text works for you, tick Approve as-is and move on. If not, write your version in the Your copy column. The Stand-in now column also shows roughly how much space the design was built for; longer or shorter is fine."],
+  ["To remove an item from the site, write Cut in Your copy. To come back to it later, leave both columns empty."],
+  ["In Word, click a box to tick it. If a box will not tick (in Google Docs, for example), type an X next to it."],
   ["The six items under Every page appear in the header or footer of all six pages, so they are listed only once."],
   ["Save the finished sheet and send it back to Norm. If you are both working on it, you can upload this file to Google Drive and edit it there together as a Google Doc."],
 ];
@@ -87,7 +96,7 @@ const body = [
   new Paragraph({
     spacing: { before: 200, after: 120 },
     border: { left: { style: BorderStyle.SINGLE, size: 18, color: "FFE14D", space: 10 } },
-    children: [new TextRun({ text: "The stand-in text was written only to show the layout. None of it will be published. Only your words go on the finished site.", font: FONT, size: 21, color: INK, bold: true })],
+    children: [new TextRun({ text: "The stand-in text was drafted only to show the layout. Nothing goes on the finished site unless you write it or approve it.", font: FONT, size: 21, color: INK, bold: true })],
   }),
 ];
 
